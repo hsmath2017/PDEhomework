@@ -1,0 +1,245 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 5}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{Evans}
+\subsection*{P88 Problem16}
+\begin{proof}
+    For $u_{t}-\Delta u=0$, set $u_{\epsilon}=u-\epsilon t$, we can see:
+    \begin{equation}
+        \pdfFrac{u_{\epsilon}}{t}-\Delta u_{\epsilon}=u_{t}-\epsilon-\Delta u=-\epsilon<0.
+    \end{equation}
+    If $u_{\epsilon}$ attains its maximum in $U_{T}$, assume the maximum point is $(\mathbf{x}_{0},t_{0})$, we can see:
+    \begin{equation}
+        \left.
+        \begin{aligned}
+            \pdfFrac{u_{\epsilon}}{t}(\mathbf{x}_{0},t_{0})&=0\\
+            \Delta(\mathbf{x}_{0},t_{0})&\le 0\\
+        \end{aligned}
+        \right\}
+        \Rightarrow \pdfFrac{u_{\epsilon}}{t}-\Delta u_{\epsilon}\ge 0.
+    \end{equation}
+    Contradict! So $u_{\epsilon}$ gets its maximal on $\Gamma_{T}$. It means that:
+    \begin{equation}
+        u_{\epsilon}(\mathbf{x},t)=u-\epsilon t\le\max_{\Gamma_{T}}u.
+    \end{equation}
+    Set $\epsilon\rightarrow 0$, we can see $u\le\max_{\Gamma_{T}}u$ is always true.
+\end{proof}
+\subsection*{P88 Problem17}
+(a)
+\begin{proof}
+    Modify the proof of theorem 3. Put $v$ instead of $u$ in the proof. We know that:
+    \begin{equation}
+        \phi'(r)=A+B=\frac{1}{r^{n+1}}\int_{E(r)}-4nv_{s}\psi-\frac{2n}{s}\sum_{i=1}^{n}v_{y_{i}}y_{i}\dif y\dif s.
+    \end{equation}
+    Since $\psi$ defined to be 
+    \begin{equation}
+        \psi=-\frac{n}{2}\log(-4\pi s)+\frac{|y|^{2}}{4s}+n\log(r).
+    \end{equation}
+    $\psi\ge 0$  in $E(r)$ because $\Phi(y,-s)r^{n}\ge1$ in $E(r)$. Thus $4n\psi(v_{s}-\Delta v)\leqslant 0$, $-4n\psi v_{s}\ge-4n\Delta v$. Then we have inequality:
+    \begin{equation}
+        \begin{aligned}
+            \phi'(r)&=\frac{1}{r^{n+1}}\int_{E(r)}-4nv_{s}\psi-\frac{2n}{s}\sum_{i=1}^{n}v_{y_{i}}y_{i}\dif y\dif s\\
+            &\ge\frac{1}{r^{n+1}}\int_{E(r)}-4n\Delta v\psi-\frac{2n}{s}\sum_{i=1}^{n}v_{y_{i}}y_{i}\dif y\dif s\\
+            &=0
+        \end{aligned}
+    \end{equation}
+    according to ghe proof of theorem 3. So we have:
+    \begin{equation}
+        \phi(r)\ge\phi(\epsilon)\forall r>\epsilon>0.
+    \end{equation}
+    But we know:
+    \begin{equation}
+        \lim_{\epsilon\rightarrow 0}\phi(\epsilon)=4v(0,0).
+    \end{equation}
+    So we have the inequality:
+    \begin{equation}
+        \frac{1}{r_{n}}\int_{E(r)}v(y,s)\frac{|y|^{2}}{s^{2}}\dif y\dif s=\phi(r)\ge 4v(0,0).
+    \end{equation}
+    WLOG, we have:
+    \begin{equation}
+        \frac{1}{4r^{n}}\int_{E(x,t;r)}v(y,s)\frac{|x-y|^{2}}{(t-s)^{2}}\dif y\dif s\ge v(x,t).
+    \end{equation}
+\end{proof}
+
+(b)
+\begin{proof}
+Define a set 
+\begin{equation}
+    S:=\{(\mathbf{x},t):v(\mathbf{x},t)=\max_{\bar{U}_{T}}v\}.
+\end{equation}
+As $v$ is continuous, $S$ is a relative closed set. On the other hand, choose $(\mathbf{x},t)\in S$, by $(a)$, we can see:
+\begin{equation}
+    \label{eq:maximal}
+    \frac{1}{4r^{n}}\int_{E(\mathbf{x},t;r)}(v_{max}-v)\frac{|x-y|^{2}}{(t-s)^{2}}\dif y\dif s\leqslant 0.
+\end{equation}
+
+As $\frac{|x-y|^{2}}{(t-s)^{2}}\ge 0$, \eqref{eq:maximal} means that $v=v_{max}$ in $E$, which means that $S$ is an open set. For $U_{T}$ is a region, we can see $S=U_{T}$.
+\end{proof}
+
+(c)
+\begin{equation}
+    \begin{aligned}
+        v_{t}&=\phi'(u)u_{t}\\
+        v_{x_{i}}&=\phi'(u)u_{x_{i}}\\
+        v_{x_{i}x_{i}}&=\phi''(u)(u_{x_{i}})^{2}+\phi'(u)u_{x_{i}x_{i}}.\\
+    \end{aligned}
+\end{equation}
+It means that:
+\begin{equation}
+    v_{t}-\Delta v=-\phi''(u)\sum_{i=1}^{n}(u_{x_{i}})^{2}.
+\end{equation}
+As $\phi$ convex, $\phi''(u)\ge 0$, which means $v_{t}-\Delta v\leqslant 0$.
+
+(d)
+\begin{equation}
+    \begin{aligned}
+        v_{t}&=2u_{t}u_{tt}+\add{i}{n}2u_{i}u_{it}\\
+        v_{i}&=2\add{j}{n}u_{ij}u_{j}+2u_{t}u_{it}\\
+        v_{ii}&=2\add{j}{n}u_{iij}u_{j}+2\add{j}{n}(u_{ij})^{2}+2(u_{it})^{2}+2u_{t}u_{iit}\\
+    \end{aligned}
+\end{equation}
+It means:
+\begin{equation}
+    v_{t}-\Delta v=2u_{t}(u_{tt}-\Delta u_{t})+2\add{i}{n}\add{j}{n}u_{j}(u_{jt}-u_{iij})-2
+    \add{j}{n}(u_{ij})^{2}\leqslant 0.
+\end{equation}
+So $v$ is a subsolution.
+\section*{Modern PDE}
+In the following problems, we set the notation:
+\begin{equation}
+    \alpha(x)=
+    \left\{
+        \begin{aligned}
+           &e^{\frac{1}{|x|^{2}-1}},&|x|<1\\
+           &0,&|x|\ge 1 
+        \end{aligned}
+    \right.
+\end{equation}
+and $\alpha_{\epsilon}(x)=\frac{1}{\epsilon^{n}}\alpha(\frac{x}{\epsilon})$.
+
+\begin{Definition}
+    The convolution of function $f$ and $g$ which is defined on $\Omega$ is:
+    \begin{equation}
+        f*g(x)=\int_{\Omega}f(y)g(x-y)\dif y=\int_{\Omega}f(x-y)g(y)\dif y
+    \end{equation}
+\end{Definition}
+\subsection*{P9 Problem1}
+Get $u\in C^{0}(\mathbb{R}^{n})$, set $u_{\epsilon}=u*\alpha_{\epsilon}$, by theorem 1.1, we can see:
+\begin{equation}
+    \label{eq:C0converge}
+    \lim_{\epsilon\rightarrow 0}u_{\epsilon}=u\text{ in }C^{0}(\mathbb{R}^{n}).
+\end{equation}
+We just choose the sequence $f_{n}=u_{\frac{1}{n}}$, $u$ and $\alpha_{\frac{1}{n}}$ both have compact support, so $f_{n}\in C_{c}^{\infty}(\mathbb{R}^{n})$, and by \eqref{eq:C0converge}, we can see 
+\begin{equation}
+    f_{n}\rightrightarrows u.
+\end{equation}
+which means $C_{c}^{\infty}(\mathbb{R}^{n})$ is dense in $C^{0}(\mathbb{R}^{n})$.
+
+If $u\in L^{p}(\mathbb{R}^{n})$, by Riesz theorem, $\forall \frac{1}{n}>0$, $\exists v_{n}$ s.t. $\|u-v_{n}\|_{p}<\frac{1}{n}$. By theorem 1.1, the following equation is true:
+\begin{equation}
+    \label{eq:Lpconverge}
+    \lim_{\epsilon\rightarrow 0}v_{n\epsilon}=v_{n}(L^{p}(\mathbb{R}^{n})).
+\end{equation}
+Set $v_{nm}=v_{n}*\alpha_{\frac{1}{m}}$, we can see
+\begin{equation}
+    \lim_{m\rightarrow\infty,n\rightarrow\infty}v_{nm}=u.
+\end{equation}
+
+So $C_{c}^{\infty}$ is dense in $L^{p}(\mathbb{R}^{n})$.
+\subsection*{P9 Problem2}
+$\forall$ compact set $K$ and multiple index $\beta$, consider:
+\begin{equation}
+    \|\partial^{\beta}(J_{\epsilon}u-u)\|\leqslant\int_{\|y\|\leqslant\epsilon}\|\partial^{\beta}u(x-y)-\partial^{\beta}u(x)\|\alpha_{\epsilon}(y)\dif y.
+\end{equation}
+As $u\in C^{\infty}(\mathbb{R}^{n})$, we can see $\partial^{\beta}u\in C^{\infty}(\mathbb{R}^{n})$, which means $\partial^{\alpha}u$ is uniform continuous in $K$. It means:
+\begin{equation}
+    \forall\epsilon>0,\exists\delta,\forall|y|<\delta,|u(x-y)-u(x)|\leqslant\epsilon\Rightarrow|J_{\delta}u-u|\leqslant\epsilon.
+\end{equation}
+So $J_{\epsilon}u\rightarrow u(C^{\infty}(\mathbb{R}^{n})).$
+
+If $u\in C_{c}^{\infty}(\mathbb{R}^{n})$, assume $K$ is the compact support set of $u$, then the support set of $u_{\epsilon}$ must be a subset of 
+\begin{equation}
+    K_{\epsilon}=\{x:\exists y\in K s.t. |x-y|\leqslant\epsilon\}.
+\end{equation}
+Then $\forall\epsilon\leqslant 1$, $K_\epsilon\subset K_{1}$. In the same way, in $K_{1}$, $\sup_{x\in K}|\partial^{\alpha}(u_{\epsilon}-u)|\rightarrow 0$.
+\subsection*{P10 Problem3}
+Mark the consistent compact support set as $K$, all the regular points in $K$ is 
+\begin{equation}
+    \{q_{1},q_{2},\cdots,q_{n},\cdots\}.
+\end{equation}
+Then $\forall$ $i$, $\{\phi_{m}(q_{i})\}$ is a Cauchy sequence in $\mathbb{R}$, so we can set 
+$\phi(q_{i})=\lim_{m\rightarrow\infty}\phi_{m}(q_{i})$. Moreover, as the definition of Cauchy sequence, 
+the convergence of $\{\phi_{m}(q_{i})\}$ is consistent, i.e. $\forall\epsilon>0$, $\exists N$, 
+$\forall m>N$ we have $|\phi_{m}(q_{i})-\phi(q_{i})|<\epsilon$ $\forall$ $i$.
+
+For irregular point $\mathbf{x}$ in $K$, there exists a sequence of regular points such that $\lim_{j\rightarrow\infty}q_{m_{j}}=\mathbf{x}$. 
+Consider the sequence $a_{j}=\phi(q_{m_{j}})$, claim $a_{j}$ is a Cauchy sequence.
+
+For $j_{1}\neq j_{2}$, $\forall n\in\mathbb{N}$, we have:
+\begin{equation}
+    |\phi(q_{m_{j_{1}}})-\phi(q_{m_{j_{2}}})|\leqslant|\phi(q_{m_{j_1}})-\phi_{n}(q_{m_{j_1}})|+|\phi_{n}(q_{m_{j_{1}}})-\phi_{n}(q_{m_{j_2}})|+|\phi(q_{m_{j_2}})-\phi_{n}(q_{m_{j_{2}}})|.
+\end{equation}
+
+As $\phi_{n}(q_{i})$ uniformly converge, and $\phi_{n}$ is continuous, we can see $\{\phi(q_{m_{i}})\}$ is a Cauchy sequence, which means that $\phi(x):=\lim_{j\rightarrow\infty}\phi(q_{m_{j}})$ is well-defined.
+
+By such definition, we can see $\phi(x)$ is continuous.
+
+Then, we show that $\phi_{n}\rightrightarrows\phi$ in $K$. As $\phi$ continuous in $K$, $\forall\epsilon>0$, $\exists$ $\delta_{1}(x)$, $\forall |x-x_{0}|<\delta_{1}$, $|\phi(x)-\phi(x_{0})|<\epsilon$.
+
+As $\phi_{n}(q_{i})$ is uniformly converge, $\exists N$, $\forall n>N$, $|\phi(q_{i})-\phi_{n}(q_{i})|<\epsilon$.
+
+As $\phi_{n}(x)$ is continuous, $\exists \delta_{2}(n,x)$ s.t. $\forall |x-x_{1}|<\delta_{2}$, $|\phi_{n}(x)-\phi_{n}(x_{1})|<\epsilon$.
+
+Regular number is dense in $\mathbb{R}$. So $\forall x\in K$, $\exists q_{i}$ s.t. $|x-q_{i}|<\delta_{1},|x-q_{i}|<\delta_{2}$.
+
+Summery the above cases, $\forall n>N$, we can see:
+\begin{equation}
+    \begin{aligned}
+        |\phi(x)-\phi_{n}(x)|&\le|\phi(x)-\phi(q_{i})|+|\phi(q_{i})-\phi_{n}(q_{i})|+|\phi_{n}(q_{i})-\phi_{n}(x)|\\
+        &\le 3\epsilon.
+    \end{aligned}
+\end{equation}
+
+Which means that $\phi_{n}\rightrightarrows\phi$ in $K$. As $\phi_{n}\in C_{c}^{\infty}(\mathbb{R}^{n})$, we can see $\phi_{m}\rightarrow\phi(C_{c}^{\infty}(\mathbb{R}^{n}))$.
+\end{document}

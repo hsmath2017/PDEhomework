@@ -1,0 +1,146 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 6}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P10 Problem6}
+\begin{proof}
+    Assume $\alpha\in\mathbb{Z}^{n}$ is a multi-index and consider the operator $\partial_{\alpha}$. Set $f,g\in S$, $S=C_{c}^{\infty}(\mathbb{R}^{n})$ or $S=C^{\infty}(\mathbb{R}^{n})$, we can see:
+    \begin{equation}
+        \partial_{\alpha}(k_{1}f+k_{2}g)=k_{1}\partial_{\alpha}f+k_{2}\partial_{\alpha}g.
+    \end{equation}
+    So $P(x,\partial)$ is a linear operator. Then we should show that $\partial_{i}$ is continuous.
+
+    For $f,g\in S$, by the definition of norm, we can see:
+    \begin{equation}
+        \|\partial_{i}f-\partial_{i}g\|=\sup_{x\in K,\alpha\in\mathbb{Z}^{n}}\|\partial_{i}\partial_{\alpha}(f-g)(x)\|\le\sup_{x\in K,\alpha\in\mathbb{Z}^{n}}\|\partial_{\alpha}(f-g)(x)\|=\|f-g\|.
+    \end{equation}
+    It means that $\partial_{i}$ is Lip-1 continuous. So $P(x,\partial)$ is continuous.
+\end{proof}
+\section*{P27 Problem2}
+\begin{equation}
+    \begin{aligned}
+    \text{supp}u&=\{x:|x|<1\}\\
+    \text{supp}u_{\epsilon}&=\{x:|x|<1+\epsilon\}
+    \end{aligned}
+\end{equation}
+\section*{P27 Problem3}
+\begin{proof}
+    By definition, $\forall\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$:
+    \begin{equation}
+        \label{eq:fm}
+        \left<f_{m},\phi\right>=\int_{\mathbb{R}^{n}}f_{m}\phi\dif x.
+    \end{equation}
+    \begin{equation}
+        \label{eq:delta}
+        \left<\delta,\phi\right>=\phi(0)=\int_{\mathbb{R}^{n}}f_{m}\phi(0)\dif x.
+    \end{equation}
+    It means that:
+    \begin{equation}
+        \label{eq:converge}
+        |\left<f_{m},\phi\right>-\left<\delta,\phi\right>|=|\int_{\mathbb{R}^{n}}f_{m}(x)(\phi(x)-\phi(0))\dif x|.
+    \end{equation}
+    $\phi\in C_{c}^{\infty}(\mathbb{R}^{n})\Rightarrow\forall\epsilon>0,\exists\delta_{0},\forall|x|<\delta_{0},|\phi(x)-\phi(0)|\le\epsilon$. So by \eqref{eq:converge}, we can see:
+    \begin{equation}
+        \begin{aligned}
+            \eqref{eq:converge}&\le\int_{\mathbb{R}^{n}}f_{m}(x)|\phi(x)-\phi(0)|\dif x\\
+            &=\int_{|x|\le\delta_{0}}f_{m}(x)|\phi(x)-\phi(0)|\dif x+\int_{|x|\ge\delta_{0}}f_{m}(x)|\phi(x)-\phi(0)|\dif x\\
+            &<\epsilon+M\int_{|x|\ge\delta_{0}}f_{m}(x)\dif x.
+        \end{aligned}
+    \end{equation}
+
+    As $f_{m}\rightrightarrows 0$, and $\int_{|x|\le\delta_{0}}f_{m}(x)\dif x\rightarrow 1$, we can see:$\int_{|x|\ge\delta_{0}}f_{m}(x)\dif x\rightarrow 0$, which means:
+    \begin{equation}
+        \exists M,\forall m\ge M, \int_{|x|\ge\delta_{0}}f_{m}(x)\dif x<\frac{\epsilon}{M}.
+    \end{equation}
+
+    So $\exists M$, s.t. $\forall m>M$, $\eqref{eq:converge}<2\epsilon$. It means that $\forall\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$, $\left<f_{m},\phi\right>\rightarrow\left<\delta,\phi\right>$. So $f_{m}\rightarrow\delta$.
+\end{proof}
+\section*{P27 Problem5}
+$f_{\epsilon}(x)=\frac{2x}{x^{2}+\epsilon^{2}}$. We claim:
+\begin{equation}
+    f_{\epsilon}(x)\rightarrow g(x):=P.V.(\frac{2}{x}).
+\end{equation}
+Then, for $\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$, consider:
+\begin{equation}
+    \begin{aligned}
+        \label{eq:fepsilonvsg}
+        \left<f_{\epsilon},\phi\right>-\left<g,\phi\right>&=\int_{\mathbb{R}}\frac{2x}{x^{2}+\epsilon^{2}}\phi(x)\dif x-\lim_{\delta\rightarrow 0}\int_{|x|\ge\delta}\frac{2\phi(x)}{x}\dif x\\
+        &=\lim_{\delta\rightarrow 0}\int_{|x|\le\delta}\frac{2x}{x^{2}+\epsilon^{2}}\phi(x)\dif x+\lim_{\delta\rightarrow 0}\int_{|x|\ge\delta}2\phi(x)(\frac{x}{x^{2}+\epsilon^{2}}-\frac{1}{x})\dif x\\
+        &=-2\lim_{\delta\rightarrow 0}\int_{|x|\ge\delta}\frac{\epsilon^{2}\phi(x)}{x(x^{2}+\epsilon^{2})}\dif x.
+    \end{aligned}
+\end{equation}
+Then, as $\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$, for $\epsilon\rightarrow 0$, we can see $\eqref{eq:fepsilonvsg}\rightarrow 0$. So $\lim_{\epsilon\rightarrow 0}f_{\epsilon}$ exists in $\mathcal{D}^{'}(\mathbb{R}^{n})$, and its limitation is exactly $P.V.(\frac{2}{x})$.
+\section*{P27 Problem8}
+(1)
+\begin{equation}
+    \begin{aligned}
+        &\innerprod{x^{k}\delta^{(m)}(x)}{\varphi(x)}\\
+        =&\innerprod{\delta^{(m)}(x)}{x^{k}\varphi(x)}\\
+        =&(-1)^{m}\innerprod{\delta(x)}{(x^{k}\varphi(x))^(m)}\\
+        =&(-1)^{m}\sum_{j=0}^{m}\binom{m}{j}(x^{k})^{(j)}\varphi^{(m-j)}(x)|_{x=0}\\
+        =&(-1)^{m}\sum_{j=0}^{m}\binom{m}{j}\frac{x^{k-j}\varphi^{(m-j)}(x)(k-j)!j!}{k!}|_{x=0}\\
+        =&\left\{
+            \begin{aligned}
+                &0&(m<k)\\
+                &\binom{m}{k}(-1)^{m}\varphi^{(m-k)}&(m\ge k).\\
+            \end{aligned}
+        \right.
+    \end{aligned}
+\end{equation}
+
+(2)
+\begin{equation}
+    \innerprod{\delta(ax)}{\varphi(x)}\overset{t=ax}{=}\frac{1}{a}\innerprod{\delta(t)}{\varphi(\frac{t}{a})}=\frac{\varphi(0)}{a}.
+\end{equation}
+(3)Don't know.
+\section*{P27 Problem9}
+\begin{equation}
+    \begin{aligned}
+        \innerprod{\pdfFrac{^{2}H}{x\partial y}}{\varphi}&=\innerprod{H}{\pdfFrac{^{2}\varphi}{x\partial y}}\\
+        &=\int_{I}\pdfFrac{^{2}\varphi}{x\partial y}\dif x\dif y\\
+        &=\varphi(0,0).
+    \end{aligned}
+\end{equation}
+So $\pdfFrac{^{2}H}{x\partial y}=\delta$.
+\end{document}

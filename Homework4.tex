@@ -1,0 +1,197 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 4}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P87 Problem12}
+(a)
+\begin{equation}
+    \left.
+        \begin{aligned}
+            \pdfFrac{u_{\lambda}}{t}&=\lambda^{2}\pdfFrac{u}{t}(\lambda x,\lambda^{2}t)\\
+            \pdfFrac{^{2}u_{\lambda}}{x_{i}^{2}}&=\lambda^{2}\pdfFrac{^{2}u}{x_{i}^{2}}(\lambda x,\lambda^{2}t)\\
+        \end{aligned}
+    \right\}
+    \Rightarrow \pdfFrac{u_{\lambda}}{t}-\Delta u_{\lambda}=\lambda^{2}(\pdfFrac{u}{t}-\Delta u)=0.
+\end{equation}
+It means that $u_{\lambda}$ solves the heat equation.
+
+(b)
+\begin{equation}
+    \difFrac{u_{\lambda}}{\lambda}=x\cdot Du(\lambda x,\lambda^{2}t)+2\lambda tu_{t}(x,t)\stackrel{\lambda\rightarrow 1}{\longrightarrow}v(x,t).
+\end{equation}
+As $\forall\lambda$, $u_{\lambda}$ satisfies the heat equation, we can see 
+$\frac{u_{\lambda+\Delta\lambda}-u_{\lambda}}{\Delta\lambda}$ satisfies heat equation for all $\Delta\lambda$. It means that $v$ satisfies the heat equation.
+
+\section*{P87 Problem13}
+(a) We can see:
+\begin{equation}
+    \begin{aligned}
+    \pdfFrac{u}{t}&=v'(z)\pdfFrac{(\frac{x}{\sqrt{t}})}{t}=-\frac{1}{2}xt^{-\frac{3}{2}}v'(z)\\
+    \pdfFrac{u}{x}&=v'(z)\frac{1}{\sqrt{t}}\\
+    \pdfFrac{^{2}u}{x^{2}}&=v''(z)\frac{1}{t}\\
+    \end{aligned}
+\end{equation}
+So:
+\begin{equation}
+    \label{eq:ODE13}
+    \begin{aligned}
+        &u_{xx}=u_{t}\\
+        \Leftrightarrow &-\frac{1}{2}v'(z)xt^{-\frac{3}{2}}=v''(z)t^{-1}\\
+        \Leftrightarrow &v''(z)t^{-1}+\frac{1}{2}v'(z)xt^{-\frac{3}{2}}=0\\
+        \Leftrightarrow &v''(z)+\frac{z}{2}v'(z)=0\\
+    \end{aligned}
+\end{equation}
+To get the general solution for \ref{eq:ODE13}, we can see:
+\begin{equation}
+    \begin{aligned}
+        v''+\frac{z}{2}v'=0&\Rightarrow \difFrac{v'}{z}+\frac{z}{2}v'=0\\
+        &\Rightarrow \frac{\dif v'}{v'}+\frac{z\dif z}{2}=0\\
+        &\Rightarrow \dif \log(v')+\dif\frac{z^{2}}{4}=0\\
+        &\Rightarrow \frac{z^{2}}{4}+\log(v')\equiv C\\
+        &\Rightarrow v'=e^{C-\frac{z^{2}}{4}}\\
+        &\Rightarrow v(z)=c\int_{0}^{z}e^{-\frac{s^{2}}{4}}\dif s+d.
+    \end{aligned}
+\end{equation}
+
+(b)
+As $(a)$ suggests, for $t>0$, we can see:
+\begin{equation}
+    u(x,t)=v(z)=c\int_{0}^{\frac{x}{\sqrt{t}}}e^{-\frac{s^{2}}{4}}\dif s+d=c\int_{0}^{x}e^{-\frac{w^{2}}{4t}}\frac{1}{\sqrt{t}}\dif w+d.
+\end{equation}
+So:
+\begin{equation}
+    \pdfFrac{u}{x}=\frac{c}{\sqrt{t}}e^{-\frac{x^{2}}{4t}}.
+\end{equation}
+Just set $c=\frac{1}{\sqrt{4\pi}}$, we get the foundamental solution $\Phi$.
+
+Then I should explain the reason of this phinomenon. By the definition $u(x,t)=v(\frac{x}{\sqrt{t}})$, we can see:
+\begin{equation}
+    u(x,0)=
+    \left\{
+        \begin{aligned}
+           &\lim_{z\rightarrow+\infty}v(z)=\sqrt{\pi}c+d,x>0\\
+           &v(0)=d,x=0\\
+           &\lim_{z\rightarrow-\infty}v(z)=d-\sqrt{\pi}c,x<0\\
+        \end{aligned}
+    \right.
+\end{equation}
+So:$\pdfFrac{u(x,0)}{x}=\delta_{0}(x)$. It shows that this solution is the foundamental solution.
+
+\section*{P87 Problem14}
+Define $v(x,t)=u(x,t)e^{ct}$, then:
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            v_{t}-\Delta v&=e^{ct}f\text{ in }\mathbb{R}^{n}\times(0,\infty)\\
+            v&=g\text{ on }\mathbb{R}^{n}\times\{t=0\}\\
+        \end{aligned}
+    \right.
+\end{equation}
+So:
+\begin{equation}
+    v(x,t)=\int_{\mathbb{R}^{n}}\Phi(x-y,t)g(y)\dif y+\int_{0}^{t}\int_{\mathbb{R}^{n}}\Phi(x-y,t-s)f(y,s)e^{cs}\dif y\dif s.
+\end{equation}
+And $u(x,t)=e^{-ct}v(x,t)$.
+\section*{P87 Problem15}
+Set $v(x,t)=u(x,t)-g(t)$, then we can see:
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            v_{t}-v_{xx}&=-g'(t)\text{ in }\mathbb{R}_{+}\times(0,\infty)\\
+            v(x,0)&=0\\
+            v(0,t)&=0\\
+        \end{aligned}
+    \right.
+\end{equation}
+Then extend $v$ to $x<0:$ just set $v(x,t)=-v(-x,t)$ on $x<0$, as the equation satisfies the  compatible condition, this extension is okay. We can see $v$ satisfies:
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            v_{t}-v_{xx}&=f(x,t)\\
+            v(x,0)&=0\\
+        \end{aligned}
+    \right.
+\end{equation}
+where $f(x,t)=-g'(t)$ if $x\ge 0$, and $f(x,t)=g'(t)$ if $x<0$. Solve this equation, we can see
+\begin{equation}
+    u(x,t)=v(x,t)+g(t)=\frac{x}{\sqrt{4\pi}}\int_{0}^{t}\frac{1}{(t-s)^{\frac{3}{2}}}e^{-\frac{x^{2}}{4(t-s)}}g(s)\dif s.
+\end{equation}
+\section*{P89 Problem22}
+\begin{equation}
+    \begin{aligned}
+    \left\{
+        \begin{aligned}
+            u_{t}+u_{x}&=d(v-u)\\
+            v_{t}-v_{x}&=d(u-v)\\
+        \end{aligned}
+    \right.
+    &\Rightarrow u_{tt}+u_{tx}=d(v_{t}-u_{t}),u_{tx}+u_{xx}=d(v_{x}-u_{x})\\
+    &\Rightarrow u_{tt}-u_{xx}=d(v_{t}-u_{t}-v_{x}+u_{x})\\
+    \end{aligned}
+\end{equation}
+What's more, $v_{t}-v_{x}=-(u_{t}+u_{x})$, so $u_{tt}-u_{xx}=-2du_{t}$. In the same way, $v_{tt}+2dv_{t}-v_{xx}=0$.
+\section*{P90 Problem24}
+(a)
+\begin{equation}
+    \begin{aligned}
+        \difFrac{k+p}{t}&=\int_{-\infty}^{+\infty}(u_{t}u_{tt}+u_{x}u_{xt})\dif x\\
+        &=\int_{-\infty}^{+\infty}(u_{t}u_{xx}+u_{x}u_{xt})\dif x\\
+        &=\int_{-\infty}^{+\infty}\pdfFrac{u_{t}u_{x}}{x}\dif x\\
+        &=0.
+    \end{aligned}
+\end{equation}
+The final equation is true for $g$ and $h$ both have compact support.
+
+(b)
+By D.Almbert's formula, we can see:
+\begin{equation}
+    u(x,t)=\frac{g(x+t)+g(x-t)}{2}+\frac{1}{2}\int_{x-t}^{x+t}h(y)\dif y.
+\end{equation}
+It means that:
+\begin{equation}
+    \begin{aligned}
+    u_{x}&=\frac{g'(x+t)+g'(x-t)}{2}+\frac{1}{2}(h(x+t)-h(x-t)).\\
+    u_{t}&=\frac{g'(x+t)-g'(x-t)}{2}+\frac{1}{2}(h(x+t)+h(x-t)).\\
+    \end{aligned}
+\end{equation}
+As $g,h$ both have compact support, we can choose large $t$ such that $u_{x}^{2}=u_{t}^{2}\forall x$, which means $k(t)=p(t)$.
+\end{document}

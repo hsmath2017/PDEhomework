@@ -1,0 +1,173 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 10}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{Evans P308 Problem7}
+By the given condition and \textbf{Gauss-Green Formula}, we can see:
+\begin{equation}
+    \label{eq:GaussGreenStep}
+    \begin{aligned}
+        \int_{\partial U}|u|^{p}\dif S&\le\int_{\partial U}|u|^{p}\alpha\cdot\mu\dif S\\
+        &=\int_{U}|u|^{p}(\nabla\cdot\alpha)\dif x+\int_{U}\alpha\cdot(\nabla|u|^{p})\dif x\\
+        &\le C\int_{U}(|u|^{p}+|\nabla|u|^{p}|)\dif x.
+    \end{aligned}
+\end{equation}
+Since 
+\begin{equation}
+    \label{eq:nablaup}
+    \nabla|u|^{p}=p|u|^{p-1}(\text{sgn}u)\nabla u,
+\end{equation}
+we have for $p=1$, 
+\begin{equation}
+    \int_{\partial U}|u|\dif S\le C\int_{U}(|u|+|\nabla u|)\dif x.
+\end{equation}
+If $p>1$, by \eqref{eq:nablaup}, we can see:
+\begin{equation}
+    \label{eq:approximateInt}
+    \int_{U}|\nabla|u|^{p}|\dif x\le C\int_{U}p|u|^{p-1}|\nabla u|\dif x.
+\end{equation}
+Then by \textbf{Young's Inequality}, we can see:
+\begin{equation}
+    \label{eq:Young}
+    |\nabla u||u|^{p-1}\le\frac{|\nabla u|^{p}}{p}+\frac{|u|^{q(p-1)}}{q}
+    \le \frac{|\nabla u|^{p}}{p}+\frac{|u|^{p}}{q}.
+\end{equation}
+Combine \eqref{eq:GaussGreenStep}, \eqref{eq:nablaup} and \eqref{eq:Young}, we can see:
+\begin{equation}
+    \int_{\partial U}|u|^{p}\dif S\le \text{Const}\int_{U}(|\nabla U|^{p}+|u|^{p})\dif x.
+\end{equation}
+\section*{P309 Problem8}
+\begin{proof}
+    If $T$ is a bounded and linear operator, by the definition, we have:
+    \begin{equation}
+        \label{eq:BoundedOp}
+        \|Tu\|\le C\|u\|\forall u\in L^{p}(\Omega).
+    \end{equation}
+    It means that:
+    \begin{equation}
+        \label{eq:OperatorIneq}
+        \int_{\partial \Omega}|u|^{p}\dif x\le C\int_{\Omega}|u|^{p}\dif x,\forall u\in L^{p}(\Omega).
+    \end{equation}
+    In fact, $\forall \epsilon>0$, there exists $u\in C^{\infty}(\Omega)$ such that $u|_{\partial\Omega}\equiv 1$, $u(x)=0$ when $\text{dist}(x,\partial\Omega)>\epsilon$. When $\epsilon\rightarrow 0$, the left side of \eqref{eq:OperatorIneq} equivalent the length of $\partial\Omega$, and the right side of \eqref{eq:OperatorIneq} converges to 0, contradict!
+
+    So $T$ isn't bounded in general.
+\end{proof}
+\section*{P309 Problem10}
+(a)
+\begin{proof}
+    The first step is an integration by parts:
+    \begin{equation}
+        \label{eq:intbypart}
+        \begin{aligned}
+        \int_{U}|Du|^{p}\dif x&=\int_{U}\nabla u\cdot\nabla u|Du|^{p-2}\dif x\\
+        &=-\int_{U}u\nabla\cdot(\nabla u|Du|^{p-2})\dif x\\
+        &=-\int_{U}u(\Delta u|Du|^{p-2}+(p-2)(\nabla u^{T}D^{2}u\nabla u)|Du|^{p-4})\\
+        &\le C\int_{U}u|Du|^{p-2}|D^{2}u|\dif x\\
+        \end{aligned}
+    \end{equation}    
+    Then, as $p\neq 2$, by Holder Inequality, we can see:
+    \begin{equation}
+        \label{eq:holder}
+        \int_{U}u|Du|^{p-2}|D^{2}u|\dif x\le(\int_{U}|u|^{\frac{p}{2}}|D^{2}u|^{\frac{p}{2}}\dif x)^{\frac{2}{p}}(\int_{U}|Du|^{p}\dif x)^{\frac{p-2}{p}}.
+    \end{equation}
+    By \eqref{eq:intbypart}, \eqref{eq:holder} and Cauchy inequality, we can see:
+    \begin{equation}
+        \int_{U}|Du|^{p}\dif x\le C(\int_{U}|u|^{p}\dif x)^{\frac{1}{2}}(\int_{U}|D^{2}u|^{p}\dif x)^{\frac{1}{2}}.
+    \end{equation}
+\end{proof}
+(b)
+\begin{proof}
+    by (a), we can see:
+    \begin{equation}
+        \label{eq:IntByPartsB}
+        \int_{U}|Du|^{2p}\dif x\le C\int_{U}u|Du|^{2p-2}|D^{2}u|\dif x.
+    \end{equation}
+    Then by Holder inequality:
+    \begin{equation}
+        \label{eq:CS}
+        \begin{aligned}
+            \eqref{eq:IntByPartsB}&\le C\|u\|_{L^\infty}\int_{U}|Du|^{2p-2}|D^{2}u|\dif x\\
+            &\le C\|u\|_{L^{\infty}}(\int_{U}|Du|^{2p}\dif x)^{\frac{p-1}{p}}(\int_{U}|D^{2}u|^{p}\dif x)^{\frac{1}{p}}\\
+        \end{aligned}
+    \end{equation}
+    By \eqref{eq:IntByPartsB} and \eqref{eq:CS}, 
+    \begin{equation}
+        \|Du\|_{L^{2p}}\le C\|u\|_{L^{\infty}}^{\frac{1}{2}}\|D^{2}u\|_{L^{p}}^{\frac{1}{2}}.
+    \end{equation}
+\end{proof}
+\section*{P309 Problem14}
+\begin{proof}
+Mark $w_{n}$ as the area of $n$-dimension ball, we can see:
+\begin{equation}
+    \label{eq:IntOfFunc}
+    \begin{aligned}
+        \int_{U}|u|^{n}\dif x&=\omega_{n}\int_{0}^{1}|\log\log(1+\frac{1}{r})|^{n}r^{n-1}\dif r\\
+        &=\omega_{n}\int_{1}^{\infty}\frac{1}{t^{n}}\frac{|\log\log(1+t)|^{n}}{t}\dif t\\
+    \end{aligned}
+\end{equation}
+Since $\frac{|\log\log(1+t)|^{n}}{t}\rightarrow 0$ when $t\rightarrow \infty$, $\exists T$ such that $\frac{|\log\log(1+t)|^{n}}{t}<1$ is true $\forall t>T$. It means that:
+\begin{equation}
+    \label{eq:approxInt}
+    \eqref{eq:IntOfFunc}\le \omega_{n}\int_{1}^{T}\frac{1}{t^{n}}\frac{|\log\log(1+t)|^{n}}{t}\dif t+\int_{1}^{\infty}\frac{1}{t^{n}}\dif t<+\infty.
+\end{equation}
+Then it's time to consider the case of derivatives. In fact:
+\begin{equation}
+    \label{eq:Derivative}
+    \pdfFrac{u}{x_{i}}=\frac{1}{\log(1+\frac{1}{|x|})}.\frac{1}{1+\frac{1}{|x|}}.\frac{-x_{i}}{|x|^{3}}.
+\end{equation}
+By \eqref{eq:Derivative}:
+\begin{equation}
+    \begin{aligned}
+        \int_{U}|u_{x_{i}}|^{n}\dif x&\le\omega_{n}\int_{0}^{1}(\frac{1}{\log(1+\frac{1}{r})}\frac{1}{1+\frac{1}{r}}\frac{1}{r^{2}})^{n}r^{n-1}\dif r\\
+        &=\omega_{n}\int_{1}^{+\infty}\frac{1}{|\log(1+t)|^{n}}\frac{1}{(1+t)^{n}}t^{n-1}\dif t\\
+        &\le\frac{\omega_{n}}{n}\int_{\log 2}^{+\infty}\frac{1}{s^{n}}\frac{1}{e^{sn}}e^{sn}\dif s\\
+        &<\infty.
+    \end{aligned}
+\end{equation}
+It means $u\in W^{1,n}(U)$.
+\end{proof}
+\section*{P311 Problem21}
+\end{document}

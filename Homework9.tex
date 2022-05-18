@@ -1,0 +1,169 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 9}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P56 Problem1}
+\begin{proof}
+    Assume $u_{\nu}(x)\in C_{c}^{\infty}(\mathbb{R}_{+}^{n})$, given $\mathbf{x}\in\mathbb{R}_{+}^{n}$, create a line segment $l(t)=t\mathbf{x}$, by Newton-Leibniz formula, we can see:
+    \begin{equation}
+        \label{eq:N-L}
+        u_{\nu}(x)=\int_{0}^{1}Du_{\nu}(\mathbf{x}t)\cdot\mathbf{x}\dif t.
+    \end{equation}
+    So, for a Cauchy sequence in $C_{c}^{\infty}(\mathbb{R}_{+}^{n})$, we can see:
+    \begin{equation}
+        \label{eq:Cauchy}
+        \begin{aligned}
+        |u_{\nu}(x)-u_{\mu}(x)|&\le\int_{0}^{1}|(Du_{\nu}(\mathbf{x}t)-Du_{\mu}(\mathbf{x}t))\cdot\mathbf{x}|\dif t\\
+        &\le C\|u_{\nu}-u_{\mu}\|_{H^{1,p}}.\\
+        \end{aligned}
+    \end{equation}
+    The final step is derived by the condition of compact support. It follows that $\{u_{\nu}(x)\}$ is uniformly convergent in $\mathbb{R}_{+}^{n}$, and its limitation $u(x)$ must satisfies that $\lim_{x\rightarrow 0}u(x)=0$. 
+
+    However, if we set 
+    \begin{equation}
+        v(x)=e^{-|x|^{2}},
+    \end{equation}
+    we can see $v\in H^{m,p}(\mathbb{R}_{+}^{n})\forall m\ge 1$, while $\lim_{x\rightarrow 0}v(x)=1$, contradict!
+    
+    So $C_{c}^{\infty}(\mathbb{R}_{+}^{n})$ isn't dense in $H^{m,p}(\mathbb{R}_{+}^{n})$.
+\end{proof}
+\section*{P56 Problem4}
+Claim: $H(x)\in W^{0,\infty}(\mathbb{R})$.
+
+\begin{proof}
+    First of all, $H(x)$ is a bounded function in $\mathbb{R}$, so $H(x)\in L^{\infty}(\mathbb{R})$. It means that $H(x)\in W^{0,\infty}(\mathbb{R})$.
+
+    $\int_{0}^{\infty}1\dif x$ diverge, it means that $H(x)\notin L^{p}\forall p<\infty$.
+
+    And $DH(x)=\delta(x)$, $\delta(x)\notin L^{\infty}(\mathbb{R})$, so $H(x)\notin W^{k,\infty}(\mathbb{R})\forall k\ge 1$.
+\end{proof}
+\section*{P56 Problem5}
+\begin{proof}
+    By definition, 
+    \begin{equation}
+        \|\delta-\alpha_{\epsilon}\|_{H^{s}(\mathbb{R}^{n})}=\sup_{\|\phi\|_{H^{-s}(\mathbb{R}^{n})=1}}\innerprod{\alpha_{\epsilon}-\delta}{\phi}.
+    \end{equation}
+    As $-s>\frac{n}{2}$, by Sobolev Embedding theorem(P62 Thm5.4), 
+    set $m=-s$, $\exists k<(-s)$ s.t. $\frac{k-1}{n}\le\frac{1}{2}<\frac{k}{n}$, we can see: for $\phi\in H^{-s}(\mathbb{R}^{n})$, $\phi\in C(\mathbb{R}^{n})$ is always true.
+
+    Then:
+    \begin{equation}
+        \label{eq:norm}
+        \innerprod{\alpha_{\epsilon}-\delta}{\phi}=\int_{|x|\le\epsilon}\alpha_{\epsilon}(x)|\phi(x)-\phi(0)|\dif x.
+    \end{equation}
+    As $\phi$ is continuous, we can see: $\forall\epsilon_{0}>0$, $\exists\delta$, $\forall|x|\le\delta$, $|\phi(x)-\phi(0)|\le\epsilon_{0}$. It means when $\epsilon\le\delta$, \eqref{eq:norm}$<\epsilon_{0}$. So we can see when $\epsilon\rightarrow 0$, $\eqref{eq:norm}\rightarrow 0$. It means that $\alpha_{\epsilon}(x)\rightarrow\delta(H^{s}(\mathbb{R}^{n}))$.
+\end{proof}
+\section*{P56 Problem7}
+Statement:$u\in H^{m,p}(\Omega)\Leftrightarrow u$ is a restriction of function in $H^{m,p}(\mathbb{R}^n)$.
+
+\begin{proof}
+    First, consider the case $m\in\mathbb{Z}^{+}$. We only need to show the necessity, which means that $\forall u\in H^{m,p}(\Omega)$, we can extend it to a function in $H^{m,p}(\mathbb{R}^{n})$.
+
+    First, we should show that if $\forall$ open set $\Omega_{1}$ such that $\Omega\subset\Omega_{1}$, we can extend $u$ to $H^{m,p}(\Omega_{1})$, then $u$ can be extended to $H^{m,p}(\mathbb{R}^{n})$. In fact, mark the function in $H^{m,p}(\Omega_{1})$ as $u_{1}$, set $\eta\in C_{c}^{\infty}(\Omega_{1})$ s.t. $\eta(x)=1$ on $\Omega$, then $\eta u_{1}$ is just the extension of $u$ on space $\mathbb{R}^{n}$. So we just need to show that $u$ can be extended to $\Omega_{1}$. By localization, we just need to extend a function $u\in H^{m,p}(\mathbb{R}_{+}^{n})$ to $H^{m,p}(\mathbb{R}^{n})$. 
+
+    Set sequence $\{u^{(\nu)}\}$ such that $u^{(\nu)}\in C^{\infty}(\bar{\mathbb{R}}_{+}^{n})$, 
+    and $u^{(\nu)}\rightarrow u$ on $H^{m,p}(\mathbb{R}_{+}^{n})$, set $v^{(\nu)}$ as:
+    \begin{equation}
+        v^{(\nu)}(x',x_{n})=\left\{
+            \begin{aligned}
+                &u^{(\nu)}(x',x_{n}),x_{n}\ge0\\
+                &\sum_{j=1}^{m}C_{j}u^{(\nu)}(x',-jx_{n}),x_{n}<0\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    while $C_{j}$ is defined as 
+    \begin{equation}
+        \sum_{j=1}^{m}(-j)^{k}C_{j}=1,\forall 0\le k\le m-1.
+    \end{equation}
+
+    Then we can see that $\{v^{(\nu)}\}$ is a foundamental sequence in $H^{m,p}(\mathbb{R}^{n})$, which means $\{v^{(\nu)}\}$ converges to $v\in H^{m,p}(\mathbb{R}^{n})$, and the norm of $v$ in $H^{m,p}(\mathbb{R}^{n})$ can be controled by $\|u\|$. So when $m>0$, the extension is available.
+
+    If $m=0$, we can see $H^{0}(\Omega)=L^{p}(\Omega)$, just set zero-extension for $u$ to the outside of $\Omega$, then get a function in $H^{0,p}(\mathbb{R}^{n})$.
+
+    For $m<0$, assume $\frac{1}{p}+\frac{1}{q}=1,m_{1}=-m$, then $u\in H^{m,p}(\Omega)$ is a linear continuous functional on $H_{0}^{m_{1},q}$. Then set the distribution $\tilde{u}$ as:
+    \begin{equation}
+        \innerprod{\tilde{u}}{\phi}=\sup_{E_{\phi}}\innerprod{u}{\phi-E_{\phi}}.
+    \end{equation}
+    while $E_{\phi}$ is an extension for $\phi$ to $H^{m,q}(\mathbb{R}^{n})$, which satisfies
+    \begin{equation}
+        \|E_{\phi}\|_{H^{m_{1}}(\mathbb{R}^{n})}\le C_{0}\|\phi\|_{H^{m_{1}}(\mathbb{R}^{n}\setminus\bar{\Omega})}.
+    \end{equation}
+    It's clear that $\tilde{u}$ is linear on $\phi$, we just need to show $\tilde{u}$ is continuous. In fact:
+    \begin{equation}
+        \begin{aligned}
+            |\innerprod{\tilde{u}}{\phi}|&=\sup_{E_{\phi}}|\innerprod{u}{\phi-E_{\phi}}|\\
+            &\le C\sup_{E_{\phi}}\|\phi-E_{\phi}\|_{H^{m_{1},q}(\Omega)}\\
+            &\le C(\|\phi\|_{H^{m_{1},q}(\Omega)}+C_{0}\|\phi\|_{H^{m_{1},q}(\mathbb{R}^{n}\setminus\bar{\Omega})})\\
+            &\le C'\|\phi\|_{H^{m_{1},q}(\mathbb{R}^{n})}.
+        \end{aligned}
+    \end{equation}
+
+    So $\tilde{u}\in H^{m,p}(\mathbb{R}^{n})$ and $\innerprod{\tilde{u}}{\phi}=\innerprod{u}{\phi}$. So on $\Omega$, we can see $\tilde{u}=u$, Q.E.D.
+\end{proof}
+\section*{P70 Problem1}
+\begin{proof}
+    First, consider the case when $u$ has a compact support set. In this case, $\forall\epsilon>0$, $u\in H^{m,p-\epsilon}(\mathbb{R}^{n})$. Then by theorem 5.1, we can see $u\in H^{m-k,q(\epsilon)}(\mathbb{R}^{n})$, while
+    \begin{equation}
+            q(\epsilon)=(\frac{1}{p-\epsilon}-\frac{k}{n})^{-1}.
+    \end{equation}
+    When $\epsilon$ is small enough, $q(\epsilon)$ can be arbitrary big. So $u\in L^{q}(\mathbb{R}^{n})$ is true for all $q$.
+
+    For $u$ not have compact support, by the above analysis, we can see $u\in H^{m-k,q}_{loc}(\mathbb{R}^{n})$. Set the unit decomposition $a(x),b(x),\sigma(x),K_{i}$ the same as theorem 5.2, we can see:$u=\sum_{i}b_{i}u_{i}$. Then it's time to estimate the $H^{m-k,q}$ norm of $u$.
+
+    By the definition:
+    \begin{equation}
+        \begin{aligned}
+            \|u\|_{H^{m-k,q}(\mathbb{R}^{n})}^q&=\sum_{i}\int_{K_{i}}\sum_{|\alpha|\le m-k}|D^{\alpha}u|^{q}\dif x\\
+            &\le C\sum_{i}\sum_{|\alpha|\le m-k}\|D^{\alpha}(b_{i}u)\|_{L^{q}(\Omega_{i})}^{q}\\
+            &\le C\sum_{i}\|b_{i}u\|_{H^{m,p}(\Omega_{i})}^{q}\\
+            &\le C\left(\sum_{i}\|b_{i}u\|_{H^{m,p}(\Omega_{i})}^{p}\right)^{\frac{q}{p}}\\
+            &\le CN\left(\int_{\mathbb{R}^{n}}\left(\sum_{|\alpha|\le m}|\partial^{\alpha}u|^{p}\right)\dif x\right)^{\frac{q}{p}}\\
+            &\le CN\|u\|_{H^{m,p}(\mathbb{R}^{n})}^{q}.
+        \end{aligned}
+    \end{equation}
+    So the result is true for $m\ge k>1$.
+\end{proof}
+\end{document}

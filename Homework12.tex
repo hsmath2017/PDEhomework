@@ -1,0 +1,182 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 12}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P111 Problem2}
+\begin{proof}
+    Now the equation is:
+    \begin{equation}
+        \label{eq:Poisson3rd}
+        \left\{
+            \begin{aligned}
+                Lu&=f,x\in\Omega\\
+                \pdfFrac{u}{\nu}+\sigma u&=0,x\in\partial\Omega\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    By $P110$ equation $(1.13),(1.14),(1.15)$, we can see: if $u\in H^{2}(\Omega)$, for $Lu=f$, $\forall v\in H^{1}(\Omega)$, the following equation is true:
+    \begin{equation}
+        \label{eq:Generalize1}
+        (-f,v)_{L^{2}(\Omega)}=a(u,v)-\left(\pdfFrac{u}{\nu},v\right)_{L^{2}(\partial\Omega)}.
+    \end{equation}
+    By condition:
+    \begin{equation}
+        \label{eq:trialFunc}
+        a(u,v)+(\sigma u,v)_{L^{2}(\partial\Omega)}=-(f,v),\forall v\in H^{1}(\Omega)
+    \end{equation}
+    \eqref{eq:Generalize1} and \eqref{eq:trialFunc} shows that:
+    \begin{equation}
+        \label{eq:Trace}
+        \left(\pdfFrac{u}{\nu}+\sigma u,v\right)_{L^2(\partial\Omega)}=0\forall v\in H^{1}(\Omega).
+    \end{equation}
+    Assume $T$ is the trace map from $H^{1}(\Omega)$ to $L^{2}(\partial\Omega)$, by \eqref{eq:Trace}, it means that:
+    \begin{equation}
+        \label{eq:Trace2}
+        \left(\left(\pdfFrac{u}{\nu}+\sigma u\right)|_{\partial\Omega},Tv\right)_{L^2(\partial\Omega)}=0\forall v\in H^{1}(\Omega).
+    \end{equation}
+    \eqref{eq:Trace2} shows that $\forall \varphi\in L^{2}(\partial\Omega)$,
+    \begin{equation}
+        \label{eq:Trace3}
+        \left(\left(\pdfFrac{u}{\nu}+\sigma u\right)|_{\partial\Omega},\varphi\right)_{L^2(\partial\Omega)}=0.
+    \end{equation}
+    It means that $\pdfFrac{u}{\nu}+\sigma u=0$ on $\partial \Omega$ in the meaning of trace.
+\end{proof}
+\section*{P111 Problem3}
+By $(1.18)$, the generalized solution $u\in H^{1}(\Omega)$ of this equation satisfies:
+\begin{equation}
+    \label{eq:GeneralizedSol}
+    \int_{\Omega}\nabla u\cdot\nabla v\dif x+\sigma\int_{\partial\Omega}uv\dif S=-\int_{\Omega}fv\dif x, \forall v\in H^{1}(\Omega).
+\end{equation}
+We set the functional
+\begin{equation}
+    \label{eq:FunctionalFor3rdBVP}
+    J[u]=\frac{1}{2}\sigma\int_{\partial\Omega}u^{2}\dif S+\int_{\Omega}(\frac{1}{2}|Du|^2+uf)\dif x.
+\end{equation}
+Then $\forall v\in H^{1}(\Omega)$, we can see:
+\begin{equation}
+    \label{eq:Dir}
+    \begin{aligned}
+        \frac{J[u+\epsilon v]-J[u]}{\epsilon}&\rightarrow    \int_{\Omega}\nabla u\cdot\nabla v\dif x+\sigma\int_{\partial\Omega}uv\dif S+\int_{\Omega}fv\dif x
+    \end{aligned}
+\end{equation}
+when $\epsilon\rightarrow 0$. From \eqref{eq:GeneralizedSol} and \eqref{eq:Dir}, we can see \eqref{eq:FunctionalFor3rdBVP} is the functional for the 3rd BVP equation.
+\section*{P111 Problem4}
+The functional related to a homogenious Dirichlet problem for Laplacian equation is
+\begin{equation}
+    J[u]=\int_{\Omega}(\frac{1}{2}|Du|^2)\dif x.
+\end{equation}
+Now we should consider the target function $u-f\in H^{1}(B)$, by $(1.9),(1.10),(1.11)$, it is suffices to find a generalized solution for the Laplacian equation
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \Delta u&=0(x\in\Omega)\\
+            u&=f(x\in\partial\Omega)\\
+        \end{aligned}
+    \right.
+\end{equation}
+By Poisson's formula, the solution is:
+\begin{equation}
+    \label{eq:Poisson}
+    u(x)=\frac{1-|x|^2}{2\pi}\int_{\partial B(0,1)}\frac{f(y)}{|x-y|^{2}}\dif S(y)
+\end{equation} 
+And, by $\Delta u=0$ in $\Omega$, use Gauss-Green formula, we can see:
+\begin{equation}
+    \label{eq:GaussGreen}
+    \int_{B}|\nabla u|^{2}\dif x=\int_{B}\nabla\cdot(u\nabla u)\dif x=\int_{\partial B}u\pdfFrac{u}{n}\dif S(x).
+\end{equation}
+By \eqref{eq:Poisson} and \eqref{eq:GaussGreen}, the result is $\pi$.
+\section*{P124 Problem2}
+\begin{proof}
+    Extend the boundary condition $g\in H^{\frac{1}{2}}(\partial\Omega)$ to the region $\Omega$, by the extension theorem, we can extend it to $G\in H^{1}(\Omega)$, and $G|_{\partial\Omega}=g$. Set $w=u-G$, we can see:
+    \begin{equation}
+        \label{eq:auxiliaryPDE}
+        \left\{
+            \begin{aligned}
+                Lw&=f-LG,x\in\Omega\\
+                w&=0,x\in\partial\Omega\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    Then use theorem 2.2, $\exists\lambda$ such that:
+    \begin{equation}
+        \label{eq:BasicIneq2}
+        \|-Lw+\lambda w\|_{-1}\ge C\|w\|_{1}.
+    \end{equation}
+    By \eqref{eq:BasicIneq2},\eqref{eq:auxiliaryPDE} and triangular inequality, we can see:
+    \begin{equation}
+        \label{eq:estimate1}
+        \|f-LG\|_{-1}+|\lambda|\|u-G\|_{-1}\ge C\|u-G\|_{1}\ge C\|u\|_{1}-C\|G\|_{1}.
+    \end{equation}
+    After the extension, $\|G\|_{1}\le C_{2}\|g\|_{\frac{1}{2}}$, $\|G\|_{-1}\le C_{3}\|g\|_{\frac{1}{2}}$by \eqref{eq:estimate1}, we can see:
+    \begin{equation}
+        C\|u\|_{1}\le CC_{2}\|g\|_{\frac{1}{2}}+\|f\|_{-1}+\|LG\|_{-1}+\|\lambda u\|_{-1}+\|\lambda C_{3}g\|_{\frac{1}{2}}.
+    \end{equation}
+    Finally, as $L$ is eliptic, $\|LG\|_{-1}\le C_{4}\|G\|_{-1}$. Above all, we can see: $\exists C>0$ such that:
+    \begin{equation}
+        \|u\|_{H^{1}(\Omega)}\le C(\|f\|_{H^{-1}(\Omega)}+\|g\|_{H^{\frac{1}{2}}(\partial\Omega)}+\|u\|_{H^{-1}(\Omega)}).
+    \end{equation}
+\end{proof}
+\section*{P124 Problem3}
+Assume the result is false, i.e. for $\lambda\notin\Lambda $, $\exists$ function sequence $\{u_{n}\}$ such that:
+\begin{itemize}
+    \item $\|u_{n}\|_{1}=1$.
+    \item $\|-Lu_{n}+\lambda u_{n}\|_{-1}<\frac{1}{n}\|u_{n}\|_{1}$.
+\end{itemize}
+$u_{n}\in C_{c}^{\infty}(\Omega)$, $C_{c}^{\infty}(\Omega)$ is a complete space, it means that $\exists u_{n_{i}}\rightarrow u_{0}$ in $C_{c}^{\infty}(\Omega)$. Then on the second condition, we can see:
+\begin{equation}
+\|-Lu_{n_{i}}+\lambda u_{n_{i}}\|_{-1}<\frac{1}{n_{i}}\|u_{n_{i}}\|_{1}.
+\end{equation}
+Set $i\rightarrow\infty$, $RHS\rightarrow 0$, which means $-Lu_{0}+\lambda u_{0}=0$. Then $u_{0}$ is the solution of equation
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            (L-\lambda)u&=0,x\in\Omega\\
+            u&=0,x\in\partial\Omega.\\
+        \end{aligned}
+    \right.
+\end{equation}
+Contradict! So $\exists C$ such that $\|-Lu+\lambda u\|_{-1}\ge C\|u\|_{1}$ is always true for $u\in C_{c}^{\infty}(\Omega)$.
+\end{document}

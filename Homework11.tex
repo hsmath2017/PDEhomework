@@ -1,0 +1,204 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 11}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P76 Problem2}
+\begin{proof}
+    By definition:
+    \begin{equation}
+        p_{m}(x,\xi)=(i\xi_{t})^{2}-a^2((i\xi_{x})^2+(i\xi_{y})^{2})
+        =-\xi_{t}^2+a^2(\xi_{x}^2+\xi_{y}^2).
+    \end{equation}
+    The cone: $t^2=a^2(x^2+y^2)$, we choose a direction outside this cone, the direction vector $l=(r,\cos\theta,\sin\theta)$, while $r>a$. Choose vector $\xi$ is not parallel to $l$, then check the function $p_{m}(x,\lambda l+\xi)$, we can see:
+    \begin{equation}
+        \label{eq:character}
+        g(\lambda)=p_{m}(x,\lambda l+\xi)=(a^2-r^2)\lambda^2+(2a\xi_{y}\sin\theta+2a\xi_{x}\cos\theta-2\xi_{t}r)\lambda+(a^2\xi_{x}^2+a^2\xi_{y}^2-\xi_{t}^{2}).
+    \end{equation}
+    As the direction $\xi$ lies outside the given cone, it's clear that:
+    \begin{equation}
+        a^2\xi_{x}^2+a^2\xi_{y}^2-\xi_{t}^{2}>0.
+    \end{equation}
+    And $r>a$ means $a^2-r^2<0$. Then we derive the discriminant of \eqref{eq:character}:
+    \begin{equation}
+        \Delta=(2a\xi_{y}\sin\theta+2a\xi_{x}\cos\theta-2\xi_{t}r)^2-4(a^2-r^2)(a^2\xi_{x}^2+a^2\xi_{y}^2-\xi_{t}^{2})>0.
+    \end{equation}
+    It means $p_{m}(x,\xi)$ always has two different roots. Then this equation is strictly hyperbolic.
+\end{proof}
+\section*{P77 Problem4}
+The characteristic surface $\phi(t,x,y)=0$ satisfies two conditions:
+\begin{equation}
+    \label{eq:char-surface}
+    \left\{
+        \begin{aligned}
+           \phi_{t}^2-a^2(\phi_{x}^{2}+\phi_{y}^{2})&=0\\
+           \phi(0,3\lambda,\lambda)&=0\\ 
+        \end{aligned}
+    \right.
+\end{equation}
+Solve this ODEs, we can see the characteristic surface is 
+\begin{equation}
+    x-3y+\sqrt{10}at=0,
+\end{equation}
+or
+\begin{equation}
+    x-3y-\sqrt{10}at=0.
+\end{equation}
+\section*{P106 Problem1}
+Assume $u$ is the foundamental solution of the operator 
+\begin{equation}
+    \label{eq:DifOp}
+    P(\mathrm{d})=\difFrac{^2}{x^2}+c\difFrac{}{x}.
+\end{equation}
+Then we can see $P(\mathrm{d})u=\delta$. Then:
+\begin{equation}
+    \label{eq:Foundamental}
+    \begin{aligned}
+        &\mathrm{d}(e^{cx}\difFrac{u}{x})=e^{cx}\delta=\delta\\
+        \Rightarrow&e^{cx}\difFrac{u}{x}=H(x)\\
+        \Rightarrow&\difFrac{u}{x}=e^{-cx}H(x)\\
+        \Rightarrow&u(x)=\left\{
+            \begin{aligned}
+                0,&x\le 0\\
+                \frac{1-e^{-cx}}{c},&x>0\\
+            \end{aligned}
+        \right.
+    \end{aligned}
+\end{equation}
+So $u(x)$ is the foundamental solution of the operator $P(\mathrm{d})$.
+\section*{P106 Problem3}
+Assume the foundamental solution is $T(x,y)$, do Fourier transformation on $T(x,y)$ related to $y$, mark $\hat{T}(x)=F_{y}[T]$, we can see:
+\begin{equation}
+    \label{eq:FTforT}
+    \begin{aligned}
+        &\difFrac{\hat{T}}{x}-\eta\hat{T}+c\hat{T}=\delta(x)\\
+        \Rightarrow&\hat{T}=e^{(\eta-c)x}H(x)+C(\eta)e^{(\eta-c)x}.\\
+    \end{aligned}
+\end{equation}
+We should choose the form of $C(\eta)$ to make $\hat{T}$ an $\mathscr{S}'$-contribution, just set:
+\begin{equation}
+    \label{eq:chooseeta}
+    C(\eta)=\left\{
+        \begin{aligned}
+            -1,&\eta>c\\
+            0,&\eta<c\\
+        \end{aligned}
+    \right.
+\end{equation}
+We can see:
+\begin{equation}
+    \label{eq:hatT}
+    \hat{T}=\left\{
+        \begin{aligned}
+            -H(-x)e^{(\eta-c)x},&\eta>c\\
+            H(x)e^{(\eta-c)x},&\eta<c\\
+        \end{aligned}
+    \right.
+\end{equation}
+Do inverse FT on \eqref{eq:hatT}, we can see when $x\neq 0$,
+\begin{equation}
+    \begin{aligned}
+        T(x,y)&=\frac{H(x)}{2\pi}\int_{-\infty}^{c}e^{(\eta-c)x}e^{iy\eta}\dif\eta
+        -\frac{H(-x)}{2\pi}\int_{c}^{+\infty}e^{(\eta-c)x}e^{iy\eta}\dif\eta.\\
+        &=\frac{e^{icy}}{2\pi}\frac{1}{x+iy}.
+    \end{aligned}
+\end{equation}
+\section*{P106 Problem5}
+For the foundamental solution $E(x,t)$, we can see:
+\begin{equation}
+    \label{eq:FoundamentalSolutionForI-D}
+    (I-\Delta)E=\delta.
+\end{equation}
+Do Fourier transformation on \eqref{eq:FoundamentalSolutionForI-D}, we can see:
+\begin{equation}
+    \hat{E}(\xi)=\frac{1}{1+|\xi|^2}.
+\end{equation}
+It means that:
+\begin{equation}
+    E(x)=\int_{\mathbb{R}^{n}}\frac{e^{i\xi\cdot x}}{1+|\xi|^2}\dif\xi.
+\end{equation}
+$E(x)$ is $C^{\infty}$ on $\mathbb{R}^{n}\setminus\{0\}$, so $I-\Delta$ is semi-elliptic.
+\section*{P106 Problem6}
+Do Fourier transformation on $u(x,t)$ related to $x$, mark the result as $\hat{u}$, we can see:
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            &\difFrac{^2\hat{u}}{t^2}+\xi^2\hat{u}=0,\\
+            &\hat{u}(\xi,0)=0,\\
+            &\difFrac{\hat{u}}{t}(\xi,0)=1.\\
+        \end{aligned}
+    \right.
+\end{equation}
+It means that 
+\begin{equation}
+    \label{eq:FTofSol}
+    \hat{u}(\xi,t)=\frac{\sin |\xi| t}{|\xi|}.
+\end{equation}
+Then, we should get the inverse FT of \eqref{eq:FTofSol}. It's clear that:
+\begin{equation}
+    \label{eq:FoundamentalOfWave1D}
+    \begin{aligned}
+        u(x,t)&=\frac{1}{2\pi}\int_{\mathbb{R}}\frac{\sin(|\xi| t)}{|\xi|}e^{i\xi x}\dif\xi\\
+        &=\frac{1}{\pi}\int_{0}^{\infty}\frac{\sin(\xi t)\cos(\xi x)}{\xi}\dif\xi\\
+        &=\frac{1}{4}(\text{sgn}(t+x)+\text{sgn}(t-x))\\
+    \end{aligned}
+\end{equation}
+To derive the D'Alembert's formula, consider the BVP of wave function:
+\begin{equation}
+    \label{eq:Wave}
+    \left\{
+        \begin{aligned}
+            \pdfFrac{^2u}{t^2}-\pdfFrac{^2u}{x^2}&=\delta(t,x)\\
+            u|_{t=0}&=0,\\
+            \pdfFrac{u}{t}|_{t=0}&=\varphi(x).\\
+        \end{aligned}
+    \right.
+\end{equation}
+Mark the foundamental solution \eqref{eq:FoundamentalOfWave1D} as $E(x,t)$, the solution of wave equation \eqref{eq:Wave} is:
+\begin{equation}
+    u(x,t)=E(x,t)*\varphi(x)=\frac{1}{2t}\int_{x-t}^{x+t}\varphi(\xi)\dif\xi.
+\end{equation}
+Then by DuHamel's Principle, D'Alembert formula is true.
+\end{document}

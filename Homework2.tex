@@ -1,0 +1,189 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 1}
+\author{Shuang Hu}
+\begin{document}
+\maketitle
+\section*{P86 Problem7}
+\begin{proof}
+Consider the equation
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \Delta u&=0\text{ in }B(0,r)\\
+            u&=g\text{ on }\partial B(0,r),\\
+        \end{aligned}
+    \right.
+\end{equation}
+where $g\ge 0$ is always true. Then by Poisson's formula, we can see:
+\begin{equation}
+    u(x)=\frac{r^{2}-|x|^{2}}{n\alpha(n)r}\int_{\partial B(0,r)}\frac{g(y)}{|x-y|^{n}}\dif S(y).
+\end{equation}
+The left-hand inequality means:
+\begin{equation}
+    \begin{aligned}
+        &r^{n-2}\frac{r-|x|}{(r+|x|)^{n-1}}u(0)\le\frac{(r^{2}-|x|^{2})}{n\alpha(n)r}\int_{\partial B(0,r)}\frac{g(y)}{|x-y|^{n}}\dif S(y)\\
+        \Leftrightarrow&
+        n\alpha(n)r^{n-1}u(0)\le(r+|x|)^{n}\int_{\partial B(0,r)}\frac{g(y)}{|x-y|^{n}}\dif S(y)\\
+        \Leftrightarrow&
+        \int_{\partial B(0,r)}g(y)\dif S(y)\le(r+|x|)^{n}\int_{\partial B(0,r)}\frac{g(y)}{|x-y|^{n}}\dif S(y)\\
+    \end{aligned}
+\end{equation}
+$|y|=r$, and $g(y)\ge 0$, so:$(r+|x|)^{n}\ge|x-y|^{n}$, which means the inequality is true.
+
+In the same way, we can see the right hand is equal to the inequality
+\begin{equation}
+    (r-|x|)^{n}\int_{\partial B(0,r)}\frac{g(y)}{|x-y|^{n}}\dif S(y)\le \int_{\partial B(0,r)}g(y)\dif S(y).
+\end{equation}
+As $(r-|x|)^{n}\le|x-y|^{n}$, the inequality is true.
+\end{proof}
+\section*{P86 Problem8}
+\begin{proof}
+    (1) As $y\in\partial B(0,r)$, we can see:
+    $$
+    K(x,y)\in C^{\infty}(B^{0}(0,r))\forall y\in\partial B(0,r).
+    $$
+    it means that $u(x)\in C^{\infty}(B^{0}(0,r))$.
+
+    (2) As $K(x,y)$ is smooth related to $x$, we can see:
+    \begin{equation}
+        \begin{aligned}
+            \Delta u&=\Delta\int_{\partial B(0,r)}K(x,y)g(y)\dif S(y)\\
+            &=\int_{\partial B(0,r)}\Delta_{x}K(x,y)g(y)\dif S(y)\\
+            &=0.
+        \end{aligned}
+    \end{equation}
+
+    (3) Set $g\equiv 1$, we can see:
+    \begin{equation}
+        \int_{\partial B(0,r)}K(x,y)\dif S(y)=1.
+    \end{equation}
+    Now fix $x_{0}\in\partial B(0,r)$, $\epsilon>0$, choose $\delta>0$ s.t. $|g(y)-g(x_{0})|<\epsilon$ 
+    if $|y-x_{0}|<\delta$. Then:
+    \begin{equation}
+        \begin{aligned}
+            |u(x)-g(x_{0})|&=|\int_{\partial B(0,r)}K(x,y)(g(y)-g(x_{0}))\dif S(y)|\\
+            &\le\int_{\partial B(0,r)\cap B(x_{0},\delta)}K(x,y)|g(y)-g(x_{0})|\dif S(y)\\
+            &+\int_{\partial B(0,r)\setminus B(x_{0},\delta)}K(x,y)|g(y)-g(x_{0})|\dif S(y)\\
+            &<\epsilon+2\|g\|_{\infty}\int_{\partial B(0,r)\setminus B(x_{0},\delta)}K(x,y)\dif S(y)\\
+        \end{aligned}
+    \end{equation}
+    Set $x\rightarrow x_{0}$, we can see $RHS\rightarrow \epsilon$. It means that $u(x)\rightarrow g(x_{0})$ 
+    if $x\rightarrow x_{0}$. 
+\end{proof}
+\section*{P86 Problem9}
+\begin{equation}
+    u(x)=\frac{2x_{n}}{n\alpha(n)}\int_{\partial\mathbb{R}_{+}^{n}}\frac{g(y)}{|x-y|^{n}}\dif y
+    \Rightarrow u(\lambda e_{n})=\frac{2\lambda}{n\alpha(n)}\int_{\partial\mathbb{R}_{+}^{n}}\frac{g(y)}{(\sqrt{\lambda^{2}+|y|^{2}})^{n}}\dif y
+\end{equation}
+For $u(0)=0$, we can see:
+\begin{equation}
+\frac{u(\lambda e_{n})-u(0)}{\lambda}=\frac{2}{n\alpha(n)}\int_{\partial\mathbb{R}_{+}^{n}}\frac{g(y)}{(\sqrt{\lambda^{2}+|y|^{2}})^{n}}\dif y
+\end{equation}
+For $g(y)$ is bounded, we can see the integral
+\begin{equation}
+    \frac{2}{n\alpha(n)}\int_{|y|\ge1}\frac{g(y)}{(\sqrt{\lambda^{2}+|y|^{2}})^{n}}\dif y
+\end{equation}
+is convergent. What's more:
+\begin{equation}
+    \begin{aligned}
+        &\frac{2}{n\alpha(n)}\int_{|y|\le1}\frac{g(y)}{(\sqrt{\lambda^{2}+|y|^{2}})^{n}}\dif y\\
+        =&\frac{2}{n\alpha(n)}\int_{|y|\le 1}\frac{|y|}{(\sqrt{\lambda^{2}+|y|^{2}})^{n}}\dif y\\
+        \rightarrow&+\infty
+    \end{aligned}
+\end{equation}
+when $\lambda\rightarrow 0^{+}$. So we can see $Du$ isn't bounded.
+\section*{P86 Problem10}
+\begin{proof}
+    (a) Just derive the Laplacian of function v, we can see $\Delta v\equiv 0$, which means $v$ is harmonic.
+
+    (b) It suffices to show that the mean value property is true for $x\in\partial U^{+}$.
+    $\forall B(x,\delta)\subset U^{+}$, consider the integral
+    $$
+    I=\int_{\partial B(x,\delta)}v(y)\dif S(y).
+    $$
+    By the definition, we can see $v(x_{1},\cdots,x_{n})=-v(x_{1},\cdots,-x_{n})$. So we can see that $I=0$, 
+    which means the mean value property is true for the function $v$ in $U^{+}$.
+\end{proof}
+\section*{P87 Problem11}
+Let $\Omega\subset\mathbb{R}^n$ be an open subset. If $0\notin\Omega$, we denote $x^*=\frac{x}{|x|^2}$, $\Omega^*=\{x^*|x\in\Omega\}$. For a function $u$ defined on $\Omega$, we define its Kelvin transformation by $K[u](x)=|x|^{2-n}u(x^*)$, $x\in\Omega^*$. Prove that $u$ is harmonic at $\Omega$ if and only if $K[u]$ is harmonic at $\Omega^*$.
+\begin{proof}
+Note that
+\[\frac{\partial|x|}{\partial x_i}=\frac{x_i}{|x|}\]
+\[\frac{\partial x_j^*}{\partial x_i}=x_j\cdot(-2)|x|^{-3}\frac{\partial|x|}{\partial x_i}=
+-2x_ix_j|x|^{-4}\quad(j\neq i)\]
+\[\frac{\partial x_i^*}{\partial x_i}=|x|^{-2}-2x^2_i|x|^{-4}.\]
+\begin{align*}
+\frac{\partial K[u]}{\partial x_i}
+&=(2-n)|x|^{1-n}\frac{\partial|x|}{\partial x_i}u(x^*)+
+|x|^{2-n}\sum_{j=1}^{n}u_j(x^*)\frac{\partial x_j^*}{\partial x_i}\\
+&=(2-n)|x|^{-n}x_iu(x^*)-2|x|^{-2-n}\sum_{j=1}^{n}u_j(x^*)x_ix_j+|x|^{-n}u_i(x^*).
+\end{align*}
+\begin{align*}
+\frac{\partial^2 K[u]}{\partial x_i^2}
+&=n(n-2)|x|^{-n-1}\frac{\partial|x|}{\partial x_i}x_iu(x^*)+
+(2-n)|x|^{-n}u(x^*)+(2-n)|x|^{-n}x_i\sum_{j=1}^{n}u_j\frac{\partial x_j^*}{\partial x_i}+\\
+&2(n+2)|x|^{-n-3}\frac{\partial|x|}{\partial x_i}\sum_{j=1}^{n}u_jx_ix_j-
+2|x|^{-n-2}\sum_{j,k=1}^{n}u_{jk}\frac{\partial x_k^*}{\partial x_i}x_ix_j-
+2|x|^{-n-2}\sum_{j=1}^{n}u_jx_j-\\
+&2|x|^{-n-2}u_ix_i-n|x|^{-n-1}\frac{\partial|x|}{\partial x_i}u_i+|x|^{-n}\sum_{m=1}^{n}u_{im}
+\frac{\partial x_m^*}{\partial x_i}\\
+&=n(n-2)|x|^{-n-2}x_i^2u(x^*)+(2-n)|x|^{-n}u(x^*)-\\
+&2(2-n)|x|^{-n-4}x_i^2\sum_{j=1}^{n}u_jx_j+(2-n)|x|^{-n-2}u_ix_i+\\
+&2(n+2)|x|^{-n-4}x_i^2\sum_{j=1}^{n}u_jx_j+4|x|^{-n-6}\sum_{j,k=1}^{n}u_{jk}x_i^2x_jx_k-\\
+&2|x|^{-n-4}\sum_{j=1}^{n}u_{ij}x_ix_j-2|x|^{-n-2}\sum_{j=1}^{n}u_jx_j-\\
+&2|x|^{-n-2}u_ix_i-n|x|^{-n-2}u_ix_i+|x|^{-n-2}u_{ii}-2|x|^{-n-4}\sum_{m=1}^{n}u_{im}x_ix_m\\
+&=n(n-2)|x|^{-n-2}x_i^2u(x^*)+(2-n)|x|^{-n}u(x^*)+\\
+&4n|x|^{-n-4}x_i^2\sum_{j=1}^{n}u_jx_j+4|x|^{-n-6}\sum_{j,k=1}^{n}u_{jk}x_i^2x_jx_k-\\
+&2|x|^{-n-4}\sum_{j=1}^{n}u_{ij}x_ix_j-2|x|^{-n-2}\sum_{j=1}^{n}u_jx_j-2n|x|^{-n-2}u_ix_i+\\
+&|x|^{-n-2}u_{ii}-2|x|^{-n-4}\sum_{m=1}^{n}u_{im}x_ix_m\\
+\end{align*}
+\begin{align*}
+\Delta K[u]
+&=\sum_{i=1}^{n}\frac{\partial^2 K[u]}{\partial x_i^2}\\
+&=4|x|^{-n-6}\sum_{i,j,k=1}^{n}u_{jk}x_i^2x_jx_k-2|x|^{-n-4}\sum_{i,j=1}^{n}u_{ij}x_ix_j-
+2|x|^{-n-4}\sum_{i,m=1}^{n}u_{im}x_ix_m+|x|^{-n-2}\Delta u\\
+&=4|x|^{-n-4}\sum_{j,k=1}^{n}u_{jk}x_jx_k-2|x|^{-n-4}\sum_{i,j=1}^{n}u_{ij}x_ix_j-
+2|x|^{-n-4}\sum_{i,m=1}^{n}u_{im}x_ix_m+|x|^{-n-2}\Delta u\\
+&=|x|^{-n-2}\Delta u.
+\end{align*}
+Hence $u$ is harmonic if and only if $K[u]$ is harmonic.
+\end{proof}
+\end{document}

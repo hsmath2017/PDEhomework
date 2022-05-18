@@ -1,0 +1,205 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 8}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P41 Problem1}
+(2)
+
+\begin{Lem}
+    $F(e^{-|x|})=\frac{2}{1+\xi^{2}}$.
+\end{Lem}
+\begin{proof}
+    \begin{equation}
+        \begin{aligned}
+            F(e^{-|x|})&=\int_{\mathbb{R}}e^{-|x|}e^{i\xi x}\dif x\\
+            &=\int_{0}^{+\infty}e^{x(i\xi-1)}\dif x+\int_{-\infty}^{0}e^{x(i\xi+1)}\dif x\\
+            &=\frac{2}{1+\xi^{2}}.
+        \end{aligned}
+    \end{equation}
+\end{proof}
+So: 
+\begin{equation}
+    F(e^{-a|x|})=\frac{2a}{a^{2}+\xi^{2}}.
+\end{equation}
+
+Then: by inversion formula, we can see:
+\begin{equation}
+    e^{-a|x|}=\frac{1}{2\pi}\int_{\mathbb{R}}\frac{2a}{a^{2}+\xi^{2}}e^{i\xi x}\dif\xi.
+\end{equation}
+
+set $x\leftarrow -x$, we can see:
+\begin{equation}
+    F(\frac{1}{a^{2}+x^{2}})=\frac{\pi}{a}e^{-a|\xi|}.
+\end{equation}
+
+(4)
+As:
+\begin{equation}
+    F(1)=2\pi\delta, F(x)=-DF(1).
+\end{equation}
+
+We can see:
+\begin{equation}
+    F(2x^{2}+x+1)=\delta-D\delta+2D^{2}\delta.
+\end{equation}
+
+(6)
+\begin{equation}
+    \log|x|=D(P.V.(\frac{1}{x})).
+\end{equation}
+So:
+\begin{equation}
+    F(\log|x|)=\xi F(P.V.(\frac{1}{x}))=-i\pi\xi\text{sgn}\xi
+\end{equation}
+\section*{P41 Problem3}
+\begin{proof}
+    $(1)\Leftrightarrow(2)$: according to the property of Fourier transformation, we can see:
+    \begin{equation}
+        \label{eq:DirFT}
+        F(D^{\alpha}f)=\xi^{\alpha}\hat{f}(\xi).
+    \end{equation}
+
+    By Theorem 3.2(Parseval equality), we can see:
+    \begin{equation}
+        \label{eq:Parseval}
+        \int_{\mathbb{R}^{n}}|D^{\alpha}f|^{2}\dif x=(2\pi)^{-n}\int_{\mathbb{R}^{n}}|F[D^{\alpha}f]|^{2}\dif x.
+    \end{equation}
+
+    According to \eqref{eq:DirFT} and \eqref{eq:Parseval}, we cna see $(1)\Leftrightarrow(2)$.
+
+    For $(3)\Rightarrow(4)$, set 
+    \begin{equation}
+        h(\xi)=\left\{
+            \begin{aligned}
+                2,&|\xi|\le1\\
+                2|\xi|^{2},&|\xi|>1.
+            \end{aligned}
+        \right.
+    \end{equation}
+    we can see $(1+|\xi|^{2})^{\frac{m}{2}}\le(h(\xi))^{\frac{m}{2}}$.
+
+    $\forall P(\xi)$, $P(\xi)\hat{f}(\xi)\in L^{2}(\mathbb{R}^{n})$, so:
+    \begin{equation}
+        \begin{aligned}
+            \|(1+\xi^{2})^{\frac{m}{2}}\hat{f}(\xi)\|_{L^{2}}&\le\|\hat{f}(\xi)\|_{L^{2}}+\||\xi|^{m}\hat{f}(\xi)\|_{L^{2}}\\
+            &<+\infty.
+        \end{aligned}
+    \end{equation}
+    
+    It means $(3)\Rightarrow (4)$.
+
+    Then we need to show that $(4)\Rightarrow (2)$. By mean-value inequality, for $|\alpha|\le m$, we can see:
+    \begin{equation}
+        |\xi^{\alpha}|\le(1+|\xi|^{2})^{\frac{m}{2}}.
+    \end{equation}
+
+    So 
+    \begin{equation}
+        \|\xi^{\alpha}\hat{f}(\xi)\|_{L^{2}}\le\|(1+|\xi|^{2})^{\frac{m}{2}}\hat{f}(\xi)\|_{L^{2}}.
+    \end{equation}
+
+    It means that $(4)\Rightarrow(2)$. Above all, $(1),(2),(3),(4)$ are all equivalent.
+\end{proof}
+\section*{P41 Problem4}
+\begin{proof}
+    As $S\in\mathscr{S}'(\mathbb{R}^{n})$, $T\in\mathscr{E}'(\mathbb{R}^{n})$, we can see $T*S\in\mathscr{S}'$. 
+
+    Let $(\alpha_{j})$ be a sequence in $C_{c}^{\infty}(\mathbb{R}^{n})$ converging to $\delta$ in $\mathscr{E}'(\mathbb{R}^{n})$ as $j\rightarrow\infty$, we can see the sequence of functions 
+    \begin{equation}
+        \phi_{j}=\alpha_{j}*T\in C_{c}^{\infty}
+    \end{equation}
+    converges to $T$ in $\mathscr{\epsilon}'$. Then $\phi_{j}*S\rightarrow T*S$ in $\mathscr{S}'$. Hence, taking Fourier transforms:
+    \begin{equation}
+        F[T*S]=\lim_{j\rightarrow\infty}F[\phi_{j}*S]=\lim_{j\rightarrow\infty}F[\phi_{j}]F[S].
+    \end{equation}
+
+    On the other hand, since $\phi_{j}\rightarrow T$ in $\mathscr{E}'$, it also converges in $\mathscr{S}'$. Hence, by Fourier transform $F[\phi_{j}]\rightarrow F[T]$ in $\mathscr{S}'$.
+    So it means that 
+    \begin{equation}
+        \lim_{j\rightarrow\infty}F[\phi_{j}]F[S]=F[T]F[S].
+    \end{equation}
+
+    Finally, we can see that
+    \begin{equation}
+        F[T*S]=F[T]F[S].
+    \end{equation}
+\end{proof}
+\section*{P42 Problem7}
+(3)
+\begin{equation}
+    \begin{aligned}
+        F(xe^{-\pi y^2})&=F_{x}(x)F_{y}(e^{-\pi y^2})\\
+        &=-2\pi\delta'(\xi)e^{-\frac{\eta^{2}}{4\pi}}\\.    
+    \end{aligned}
+\end{equation}
+
+(4)
+\begin{equation}
+    \begin{aligned}
+        F(\delta'(x)e^{-\frac{y^2}{2}})&=F_{x}(\delta'(x))F_{y}(e^{-\frac{y^2}{2}})\\
+        &=\sqrt{2\pi}\xi e^{-\frac{|\eta|^{2}}{2}}.\\
+    \end{aligned}
+\end{equation}
+\section*{P42 Problem8}
+题都没看懂...
+\section*{P42 Problem9}
+\begin{proof}
+    By definition, $Au(x)=\int e^{i\innerprod{x}{\xi}}a(x,\xi)\hat{u}(\xi)\dif\xi$. Fourier transformation is a linear map from $\mathscr{S}(\mathbb{R}^{n})$ to $\mathscr{S}(\mathbb{R}^{n})$, so $\hat{u}(\xi)\in\mathscr{S}(\mathbb{R}^{n})$. Now we consider the expression 
+    $\partial^{p}Au(x)$.
+
+    We can see:
+    \begin{equation}
+        \int |\partial^{p}(e^{i\innerprod{x}{\xi}}a(x,\xi)\hat{u}(\xi))|\dif\xi\le
+        \int |e^{i\innerprod{x}{\xi}}|\xi|^{p}\hat{u}(\xi)|\dif\xi<\infty.
+    \end{equation}
+
+    So, by dominent convergent theorem(DCT), we can swap the order of integral and derivative. Now, consider 
+    \begin{equation}
+        Bu(x)=\int e^{i\innerprod{x}{\xi}}|\xi|^{p}\hat{u}(\xi)\dif\xi.
+    \end{equation}
+    As $\hat{u}\in\mathscr{S}$, this integral must be convergent, and $\exists$ constant $C$ such that $Bu(x)\le C^{p}u(x)$. $u\in\mathscr{S}\Rightarrow Au(x)\in\mathscr{S}$.
+\end{proof}
+\end{document}

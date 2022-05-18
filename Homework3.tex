@@ -1,0 +1,202 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 3}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P85 Problem1}
+\begin{proof}
+    Set $w(t):=u(\phi(x,t),t)$ such that
+    \begin{equation}
+        \difFrac{w}{t}=\pdfFrac{u}{t}+b\cdot Du.
+    \end{equation}
+    it means that $\pdfFrac{\phi}{t}=b$, which means $\phi(x,t)=x_{0}+bt$. After this modify, 
+    we can see:
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                \difFrac{w}{t}+cw&=0\\
+                w_{x_{0}}(0)&=u(x_{0},0)\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    this ODE suggests:
+    \begin{equation}
+        w(t)=e^{-ct}u(x_{0},0).
+    \end{equation}
+    So:
+    \begin{equation}
+        u(x,t)=e^{-ct}u(x-bt,0)=e^{-ct}g(x-bt).
+    \end{equation}
+\end{proof}
+\section*{P88 Problem18}
+\begin{proof}
+    \begin{equation}
+        \left.
+            \begin{aligned}
+                v_{tt}&=u_{ttt}\\
+                \Delta v&=\Delta u_{t}\\
+            \end{aligned}
+        \right\}
+        \Rightarrow\pdfFrac{(u_{tt}-\Delta u)}{t}=0\Rightarrow v_{tt}-\Delta v=0.
+    \end{equation}
+    on $\mathbb{R}^{n}\times\{t=0\}$, we can see $v=u_{t}=h$, and $v_{t}(x,0)=\lim_{t\rightarrow 0}\Delta u(x,t)$.
+
+    For $u\equiv 0$ when $t=0$, we can see $\Delta u(x,0)=0$. As $\Delta u$ is continuous, we can see $v_{t}(x,0)=0$.
+\end{proof}
+\section*{P88 Problem19}
+(a)
+\begin{equation}
+    \begin{aligned}
+        u_{xy}=0&\Rightarrow\pdfFrac{u_{x}}{y}=0\Rightarrow u_{x}=f(x)+C_{1}.\\
+        u_{xy}=0&\Rightarrow\pdfFrac{u_{y}}{x}=0\Rightarrow u_{y}=g(y)+C_{2}.\\
+    \end{aligned}
+\end{equation}
+It means that $u(x,y)=F(x)+G(y)+C$.
+
+(b)
+\begin{equation}
+    \begin{aligned}
+        \pdfFrac{u_{\xi}}{\eta}&=\pdfFrac{u_{\xi}}{t}\pdfFrac{t}{\eta}+\pdfFrac{u_{\xi}}{x}\pdfFrac{x}{\eta}\\
+        &=u_{\xi x}-u_{\xi t}\\
+        &=\pdfFrac{u_{x}}{\xi}-\pdfFrac{u_{t}}{\xi}\\
+        &=(\pdfFrac{u_{x}}{x}\pdfFrac{x}{\xi}+\pdfFrac{u_{x}}{t}\pdfFrac{t}{\xi})-(\pdfFrac{u_{t}}{x}\pdfFrac{x}{\xi}+\pdfFrac{u_{t}}{t}\pdfFrac{t}{\xi})\\
+        &=u_{xx}+u_{xt}-u_{xt}-u_{tt}=u_{xx}-u_{tt}.
+    \end{aligned}
+\end{equation}
+
+(c)
+\begin{equation}
+    \begin{aligned}
+    u_{tt}-u_{xx}=0\Rightarrow u_{\xi\eta}=0&\Rightarrow u(\xi,\eta)=f(\xi)+g(\eta)\\
+    &\Rightarrow u(x,t)=F(x-t)+G(x+t).\\
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            u(x,0)&=F(x)+G(x)=g(x)\\
+            u_{t}(x,0)&=-F'(x)+G'(x)=h(x)\\
+        \end{aligned}
+    \right.
+    \Rightarrow
+    \left\{
+        \begin{aligned}
+            G'(x)&=\frac{h(x)+g'(x)}{2}\\
+            F'(x)&=\frac{g'(x)-h(x)}{2}\\
+        \end{aligned}
+    \right.
+\end{equation}
+It means that 
+\begin{equation}
+    u(x,t)=\frac{1}{2}(g(x+t)+g(x-t))+\frac{1}{2}\int_{x-t}^{x+t}h(y)\dif y.
+\end{equation}
+
+(d)
+
+Right-moving: $g(\xi)\equiv 0$ when $\xi<x$.
+
+Left-moving: $g(\xi)\equiv 0$ when $\xi>x$. 
+\section*{P89 Problem20}
+\begin{proof}
+    If $u$ satisfies the wave equation, it means:
+    \begin{equation}
+        \label{eq:wave20}
+        \sum_{i=1}^{n}u_{x_{i}x_{i}}=\frac{1}{c^{2}}u_{tt}.
+    \end{equation}
+    Set $r=|x|$, \ref{eq:wave20} means that 
+    \begin{equation}
+        \label{eq:funcv20}
+        v_{rr}+\frac{n-1}{r}v=\frac{1}{c^{2}}v_{tt}.
+    \end{equation}
+    Suppose $u=\alpha(r)\phi(t-\beta(r))$, according to \ref{eq:funcv20}, we can see:
+    \begin{equation}
+        \label{eq:ap20}
+        \alpha''\phi-2\alpha'\beta'\phi'-\alpha\beta''\phi'+\alpha(\beta')^{2}\phi''+\frac{n-1}{r}(\alpha'\phi-\alpha\phi'\beta')=\frac{\alpha}{c^{2}}\phi''
+    \end{equation}
+    According to \ref{eq:ap20} and $\beta(0)=0$, we can see:
+    \begin{equation}
+        \label{eq:2phi20}
+        \alpha(\beta')^{2}=\frac{\alpha}{c}\Rightarrow \beta=\frac{r}{c},\beta'=\frac{1}{c},\beta''=0.
+    \end{equation}
+    and:
+    \begin{equation}
+        \label{eq:phi20}
+        \begin{aligned}
+            \alpha''+\frac{n-1}{r}\alpha'&=0\\
+            2\alpha'+\frac{n-1}{r}\alpha&=0\\
+        \end{aligned}
+    \end{equation}
+    From the first equation in \ref{eq:phi20}, we can see $\alpha'=\frac{C}{r^{n-1}}$. It means that if $n\neq 2$, 
+    $\alpha=C_{1}r^{2-n}+C_{2}$, if $n=2$, $\alpha=C_{1}\log(r)+C_{2}$.
+    If it satisfies the second equation in \ref{eq:phi20}, it means:
+    \begin{equation}
+        \label{eq:alpha20}
+        2(2-n)+(n-1)=0\Rightarrow n=3.
+    \end{equation}
+    In special case ,when $n=1$, the equation \ref{eq:phi20} is also correct. So $n=1$ or $n=3$.
+
+    When $n=1$, $\alpha=C$, $\beta=\frac{r}{c}$. When $n=3$, $\alpha=\frac{k}{r}$, $\beta=\frac{r}{c}$.
+\end{proof}
+\section*{P89 Problem21}
+(a)
+\begin{equation}
+    \label{eq:Maxwell}
+    \begin{aligned}
+        E_{tt}&=\text{curl}(B_{t})\\
+        &=\text{curl}(-\text{curl}E)\\
+        &=\text{curl}(\pdfFrac{E_{2}}{x_{3}}-\pdfFrac{E_{3}}{x_{2}},\pdfFrac{E_{3}}{x_{1}}-\pdfFrac{E_{1}}{x_{3}},\pdfFrac{E_{1}}{x_{2}}-\pdfFrac{E_{2}}{x_{1}}).\\
+        &=\Delta E.
+    \end{aligned}
+\end{equation}
+The final equation is derived by the condition $\nabla\cdot E=0$. In the same way, we can see:$B_{tt}=\Delta B$.
+
+(b)
+
+For $w=\nabla\cdot u$, get divergence on the given equation, we can see:
+\begin{equation}
+    \begin{aligned}
+        &\nabla\cdot u_{tt}-\mu\nabla\cdot\Delta u-(\lambda+\mu)\nabla\cdot(\nabla(\nabla\cdot u))=0\\
+        \Rightarrow&w_{tt}-(\lambda+\mu)w-\mu\nabla(\Delta u)=0\\
+        \Rightarrow& w_{tt}-(\lambda+2\mu)\Delta w=0.
+    \end{aligned}
+\end{equation}
+For $w=\nabla\times u$, in the same way, we can see $w_{tt}-\mu\Delta w=0$.
+\end{document}

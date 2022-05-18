@@ -1,0 +1,240 @@
+\documentclass[a4paper]{ctexart}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 6}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P10 Problem7}
+Assume $\phi_{\mu}(x)$ is a foundamental sequence in $\mathscr{S}(\mathbb{R}^{n})$, by definition, $\forall m\in\mathbb{N}$ and $\epsilon>0$, $\exists N$ s.t. $\forall \mu,\nu>N$, we can see 
+\begin{equation}
+    \label{defn:complete}
+    \sup_{|\alpha|\le m,x\in\mathbb{R}^{n}}(1+|x|^{2})^{\frac{m}{2}}|\partial^{\alpha}[\phi_{\mu}-\phi_{\nu}](x)|<\epsilon.
+\end{equation}
+
+(1) $\forall m$, $\{\|\phi_{\nu}\|_{m}\}$ is bounded, so $\exists M_{m}$ s.t.
+\begin{equation}
+    \sup_{|\alpha|\le m,x\in\mathbb{R}^{n}}(1+|x|^{2})^{\frac{m}{2}}|\partial^{\alpha}\phi_{\nu}(x)|\le M_{m}.
+\end{equation}
+So:
+\begin{equation}
+    |\partial^{\alpha}\phi_{\nu}(x)|\le\frac{M_{m}}{(1+|x|^{2})^{\frac{m}{2}}}.
+\end{equation}
+Then, on any closed ball $|x|\le R$, $\{\partial^{\alpha}\phi_{\nu}\}$ is a fundamental sequence. So on $|x|\le R|$, there exists a uniform limit $\psi_{\alpha}(x)$ s.t.
+\begin{equation}
+    |\psi_{\alpha}(x)|\le\frac{M_{m}}{(1+|x|^{2})^{\frac{m}{2}}}.
+\end{equation}
+
+(2)$\psi_{\alpha}(x)=\partial^{\alpha}\psi_{0}(x)$. In fact we only need to show 
+\begin{equation}
+    \psi_{(1,0,\cdots,0)}=\partial_{1}\psi_{0}(x).
+\end{equation}
+$\forall R>0$, when $|x|\le R$, we can see:
+\begin{equation}
+    \partial_{1}(\phi_{\nu})\rightrightarrows\psi_{(1,0,\cdots,0)}
+\end{equation}
+and
+\begin{equation}
+    \phi_{\nu}\rightrightarrows\psi_{0}.
+\end{equation}
+$\forall\epsilon>0$, set $M_{1}'>0$ and $N_{0}\in\mathbb{N}$ s.t.
+\begin{equation}
+    \int_{|x_{1}|>M_{1}'}\frac{\dif x_{1}}{(1+|x_{1}|^{2})^{\frac{1}{2}}}<\frac{\epsilon}{4M_{1}},
+\end{equation}
+and
+\begin{equation}
+    |\psi_{(1,0,\cdots,0)(x)-\partial_{x_{1}}\phi_{\nu}(x)}|<\frac{\epsilon}{4M_{1}'}
+\end{equation}
+So:
+\begin{equation}
+    |\int_{-\infty}^{x_{1}}\psi_{(1,0,\cdots,0)}(x',x_{2},\cdots,x_{n})\dif x'-\phi_{\nu}(x_{1},\cdots,x_{n})|<\epsilon.
+\end{equation}
+So 
+\begin{equation}
+    \psi_{(1,0,\cdots,0)}=\partial_{1}\psi_{0}(x).
+\end{equation}
+
+(3)$\|\phi_{\nu}-\psi_{0}\|\rightarrow 0$. In fact, $\forall\epsilon>0$, $\exists R>0$ s.t. when $|x|>R$,
+\begin{equation}
+    \sup_{|\alpha|\le m}|\partial^{\alpha}[\phi_{\nu}(x)-\psi_{0}(x)]|\le\frac{M_{m}}{(1+|x|^{2})^{\frac{m}{2}}}<\epsilon.
+\end{equation}
+Then choose $N$ s.t. when $\nu>N$, on $|x|\le R$, we have 
+\begin{equation}
+    \sup_{|\alpha|\le m}|\partial^{\alpha}[\phi_{\nu}(x)-\psi_{0}(x)]|<\epsilon.
+\end{equation}
+So 
+\begin{equation}
+    \partial^{\alpha}\phi_{\nu}(x)\rightrightarrows\partial^{\alpha}\psi_{0}(x).
+\end{equation}
+
+Then we can see $\mathscr{S}(\mathbb{R}^{n})$ is complete.
+\section*{P10 Problem8}
+\begin{proof}
+    It's clear that 
+    \begin{equation}
+        \begin{aligned}
+            \|x^{\alpha}\partial^{p}(u_{\epsilon}(x)-u(x))\|&=\|x^{\alpha}\int_{\mathbb{R}^{n}}(u^p(x-y)-u^{p}(x))\alpha_{\epsilon}(y)\dif y\|\\
+            &\le\int_{\mathbb{R}^{n}}x^{\alpha}|u^{p}(x-y)-u^{p}(x)|\alpha_{\epsilon}(y)\dif y
+        \end{aligned}
+    \end{equation}
+    Then it suffices to show that 
+    \begin{equation}
+        \label{eq:converge}
+        \lim_{\epsilon\rightarrow 0}\int_{\mathbb{R}^{n}}x^{\alpha}|u^{p}(x-y)-u^{p}(x)|\alpha_{\epsilon}(y)\dif y=0.
+    \end{equation}
+    As $u\in\mathscr{S}(\mathbb{R}^{n})$,\eqref{eq:converge} means 
+    \begin{equation}
+        \forall \epsilon>0, \exists K,\forall |x|\ge K, 
+        \int_{\mathbb{R}^{n}}x^{\alpha}|u^{p}(x-y)-u^{p}(x)|\alpha_{\epsilon}(y)\dif y<\epsilon.
+    \end{equation}
+
+    Then consider the compact set $\{x:|x|\le K\}$. As $u_{\epsilon}\rightarrow u$ on $C_{c}^{\infty}(\mathbb{R}^{n})$, we can see:
+    \begin{equation}
+        \forall\epsilon>0,\exists\delta_{0},\forall\delta<\delta_{0},|x|\le K,
+        \int_{\mathbb{R}^{n}}x^{\alpha}|u^{p}(x-y)-u^{p}(x)|\alpha_{\delta}(y)\dif y<\epsilon
+    \end{equation}
+
+    By the above two equations, we can see 
+    \begin{equation}
+        u_{\epsilon}\rightarrow u(\mathscr{S}(\mathbb{R}^{n})).
+    \end{equation}
+\end{proof}
+\section*{P27 Problem14}
+\begin{proof}
+For the derivative of contribution $\mathcal{F}$ is continuous, we can see $\exists$ $f\in C(\mathbb{R}^{n})$ such that:
+\begin{equation}
+    \left<\partial_{k}\mathcal{F},\phi\right>=-\innerprod{\mathcal{F}}{\partial_{k}\phi}=\innerprod{f}{\phi}
+\end{equation}
+$\forall\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$. By the continuous of function $f$, there exists primitive functions of $f$ such that $\partial_{k}(F)=f$. Then it suffices to show that 
+\begin{equation}
+    \innerprod{\mathcal{F}}{\phi}=\innerprod{F}{\phi}.
+\end{equation}
+
+Set $\phi=\partial_{k}\psi$, we can see:
+\begin{equation}
+    \begin{aligned}
+        \innerprod{\mathcal{F}}{\phi}&=-\innerprod{f}{\psi}\\
+        &=-\int_{\mathbb{R}^{n}}f\psi\dif x\\
+        &=-\int_{\mathbb{R}^{n}}\partial_{k}F\psi\dif x\\
+        &=\int_{\mathbb{R}^{n}}F\partial_{k}\psi\dif x\\
+        &=\innerprod{F}{\phi}.
+    \end{aligned}
+\end{equation}
+So $\mathcal{F}=F$. Then $\partial_{k}F=f$, so this contribution is continuous and derivable.
+\end{proof}
+\section*{P27 Problem15}
+\begin{proof}
+    First of all, set $\varphi\in C_{c}^{\infty}(\mathbb{R})$, consider a function 
+    \begin{equation}
+        h(y)=\innerprod{g_{x}}{\varphi(x+y)}.
+    \end{equation}
+    Set $\zeta(x)=1$ when $x\ge a$, $\zeta(x)=0$ when $x\le a-1$, and $\zeta$ is a $C^{\infty}$ function, so 
+    \begin{equation}
+        h(y)=\innerprod{g_{x}}{\zeta(x)\varphi(x+y)}.
+    \end{equation}
+    As $\varphi(x)$ has compact support, we can see when $y$ is big enough, $\zeta(x)\varphi(x+y)\equiv 0$, which means $h(y)\equiv 0$ when $y$ is big enough.
+
+    Then:
+    \begin{equation}
+        \innerprod{f_{y}}{h(y)}=\innerprod{\zeta(y)f_{y}}{h(y)}=\innerprod{f_{y}}{\zeta(y)h(y)}.
+    \end{equation}
+
+    As $h(y)$ has support $(-\infty,c)$, $c<+\infty$, and $\zeta(y)=0$ when $y<a-1$, it means:
+    $\zeta(y)h(y)=0$ when $y<a-1$ or $y>c$. So $\zeta(y)h(y)$ has compact support, which means $\zeta(y)h(y)\in C_{c}^{+\infty}(\mathbb{R})$, $f*g\in\mathcal{D}'(\mathbb{R})$, the convolution exists.
+    
+    If $\phi(x)\equiv 0$ when $x\le a^{*}$($a^{*}$ is a constant), it means $h(y)$ itself has a compact support $K$, just choose $a^{*}$ s.t. $K\cap [a,+\infty)=\emptyset$, we can see $\innerprod{f*g}{\phi}=0$.  So supp$(f*g)\subset[a^{*},+\infty)$.
+\end{proof}
+\section*{P28 Problem16}
+In this problem, $\phi\in C_{c}^{\infty}(\mathbb{R}^{n})$.
+(1)
+\begin{equation}
+    \begin{aligned}
+        \innerprod{tH(t)*e^{t}H(t)}{\phi}&=\innerprod{tH(t)}{\innerprod{e^{y}H(y)}{\phi(t+y)}}\\
+        &=\innerprod{tH(t)}{\innerprod{e^{w-t}H(w-t)}{\phi(w)}}\\
+        &=\innerprod{tH(t)}{\int_{t}^{+\infty}e^{w-t}\phi(w)\dif w}\\
+        &=\int_{0}^{\infty}t\int_{t}^{\infty}e^{w-t}\phi(w)\dif w\dif t\\
+        &=\int_{0}^{+\infty}\phi(w)\int_{0}^{w}te^{w-t}\dif t\dif w\\
+        &=\int_{0}^{+\infty}(e^{w}-w-1)\phi(w)\dif w\\
+        &=\innerprod{(e^{t}-t-1)H(t)}{\phi}\\
+    \end{aligned}
+\end{equation}
+
+(2)
+\begin{equation}
+    \begin{aligned}
+        \innerprod{H(t)\sin(t)*H(t)\cos(t)}{\phi}&=\innerprod{H(t)\sin(t)}{\innerprod{H(y)\cos y}{\phi(t+y)}}\\
+        &=\innerprod{H(t)\sin(t)}{\innerprod{H(w-t)\cos(w-t)}{\phi(w)}}\\
+        &=\innerprod{H(t)\sin(t)}{\int_{t}^{+\infty}\cos(w-t)\phi(w)\dif w}\\
+        &=\int_{0}^{+\infty}\sin(t)\int_{t}^{+\infty}\cos(w-t)\phi(w)\dif w\\
+        &=\int_{0}^{+\infty}\phi(w)\int_{0}^{w}\sin(x)\cos(w-x)\dif x\dif w\\
+        &=\int_{0}^{+\infty}\frac{w\sin w}{2}\phi(w)\dif w\\
+        &=\innerprod{\frac{tH(t)}{2}\sin t}{\phi}.        
+    \end{aligned}
+\end{equation}
+
+(3)
+\begin{equation}
+    \begin{aligned}
+        \innerprod{(f(t)H(t))*H(t)}{\phi}&=\innerprod{f(t)H(t)}{\innerprod{H(y)}{\phi(t+y)}}\\
+        &=\innerprod{f(t)H(t)}{\innerprod{H(w-t)}{\phi(w)}}\\
+        &=\innerprod{f(t)H(t)}{\int_{x}^{+\infty}\phi(w)\dif w}\\
+        &=\int_{0}^{+\infty}f(t)\dif t\int_{t}^{\infty}\phi(w)\dif w\\
+        &=\int_{0}^{+\infty}\phi(w)\int_{0}^{w}f(\tau)\dif\tau\dif w\\
+        &=\innerprod{H(t)\int_{0}^{t}f(\tau)\dif\tau}{\phi}.
+    \end{aligned}
+\end{equation}
+\section*{P28 Problem18}
+By definition,$T*\phi=\innerprod{T_{y}}{\phi(x-y)}$.
+
+If $\phi_{n}\rightarrow\phi$ in $C_{c}^{\infty}(\mathbb{R}^{n})$, it means $\exists$ compact set $K$ such that $\phi_{n}\rightrightarrows\phi$ on $K$. Then:
+\begin{equation}
+    \begin{aligned}
+        \|T*\phi_{n}-T*\phi\|
+        &=\|\innerprod{T_{y}}{\phi_{n}(x-y)-\phi(x-y)}\|\\
+        &\le\innerprod{T_{y}}{|\phi_{n}(x-y)-\phi(x-y)|}\\
+        &\rightarrow 0.
+    \end{aligned}
+\end{equation}
+The final step is derived from the linear property of functional $T_{y}$ and $\phi_{n}\rightrightarrows\phi$. So it means that the given map is continuous on $\phi$.
+
+By the definiton of the convergence of contribution, if $T_{n}\rightarrow T$, it means that $\forall \phi\in C_{c}^{\infty}(\mathbb{R}^{n})$, $\innerprod{T_{n}-T}{\phi}=0$. It means that the given map is continuous on $T$.
+\end{document}
