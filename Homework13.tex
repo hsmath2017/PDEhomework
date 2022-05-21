@@ -1,0 +1,96 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 13}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P124 Problem4}
+\begin{proof}
+    If $\lambda\in\Lambda$, $\exists u\neq 0$ such that
+    \begin{equation}
+        \label{eq:CharacterEq}
+        \left\{
+            \begin{aligned}
+                (L-\lambda)u&=0,x\in\Omega\\
+                u&=0,x\in\partial\Omega\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    In $\Omega$, $Lu=\lambda u$, it means:
+    \begin{equation}
+        \label{eq:Lutimesu}
+        \innerprod{Lu}{u}_{L^{2}(\Omega)}=\innerprod{\lambda u}{u}=\lambda\innerprod{u}{u}.
+    \end{equation}
+    On the other hand, for $L=L^{*}$, it derives the following equation:
+    \begin{equation}
+        \label{eq:Lstaru}
+        \innerprod{Lu}{u}=\innerprod{u}{L^{*}u}=\innerprod{u}{Lu}=\innerprod{u}{\lambda u}=\bar{\lambda}\innerprod{u}{u}.
+    \end{equation}
+    As $u\neq 0$, $\innerprod{u}{u}>0$. By \eqref{eq:Lstaru} and \eqref{eq:Lutimesu}, we can see $\lambda=\bar{\lambda}$, which means that $\lambda\in\mathbb{R}$. So $\Lambda\subset\mathbb{R}$.
+\end{proof}
+\section*{P124 Problem5}
+For the eigen-value problem 
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            -\Delta u&=\lambda u,x\in\Omega\\
+            u&=0,x\in\partial\Omega\\
+        \end{aligned}
+    \right.
+\end{equation}
+The eigen-functions $\{\omega_{j}\}$ forms a complete orthonormal basis on $L^{2}(\Omega)$. As $\innerprod{u}{\omega_{1}}=0$, by Fourier extension, we can see:
+\begin{equation}
+    \label{eq:FourierExtend}
+    u=\sum_{j=2}^{\infty}d_{j}\omega_{j}.
+\end{equation}
+Then:
+\begin{equation}
+    \label{eq:secondEigen}
+    \frac{\innerprod{-\Delta u}{u}}{\|u\|^2}=\frac{\innerprod{\sum_{j=2}^{\infty}\lambda_{j}d_{j}\omega_{j}}{\sum_{j=2}^{\infty}d_{j}\omega_{j}}}{\sum_{j=2}^{\infty}d_{j}^{2}}=\frac{\sum_{j=2}^{\infty}\lambda_{j}d_{j}^{2}}{\sum_{j=2}^{\infty}d_{j}^{2}}\ge\lambda_{2}.
+\end{equation}
+If we choose $u=\omega_{2}$, \eqref{eq:secondEigen} equals to $\lambda_{2}$. So:
+\begin{equation}
+    \lambda_{2}=\inf_{u\in H_{0}^{1}(\Omega),\innerprod{u}{\omega_{1}}=0}\frac{\innerprod{-\Delta u}{u}}{\|u\|^{2}}.
+\end{equation}
+\end{document}
