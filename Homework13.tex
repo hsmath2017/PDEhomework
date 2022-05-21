@@ -14,7 +14,7 @@
 \newtheorem{Definition}{\hspace{2em}定义}
 \newtheorem{Example}{\hspace{2em}例}
 \newtheorem{Thm}{\hspace{2em}定理}
-\newtheorem{Lem}{\hspace{2em}引理}
+\newtheorem{Lem}{\hspace{2em}Lemma}
 \newtheorem{cor}{\hspace{2em}推论}
 % some common command
 \newcommand{\dif}{\mathrm{d}}
@@ -93,4 +93,49 @@ If we choose $u=\omega_{2}$, \eqref{eq:secondEigen} equals to $\lambda_{2}$. So:
 \begin{equation}
     \lambda_{2}=\inf_{u\in H_{0}^{1}(\Omega),\innerprod{u}{\omega_{1}}=0}\frac{\innerprod{-\Delta u}{u}}{\|u\|^{2}}.
 \end{equation}
+\section*{P135 Problem1}
+\begin{proof}
+    First, we claim a lemma:
+    \begin{Lem}
+        Assume $u\in C^{\infty}(\mathbb{R}_{+}^{n})\cap H^{m,p}(\mathbb{R}_{+}^{n})$, we can see:
+        \begin{equation}
+            \label{eq:Foundamental}
+            \|\nabla_{h}u\|_{L^{p}}\le\|\pdfFrac{u}{x_{1}}\|_{L^{p}}.
+        \end{equation}
+    \end{Lem}
+    \begin{proof}
+        For
+        \begin{equation}
+            \label{eq:nablah}
+            \nabla_{h}u=\int_{0}^{1}\pdfFrac{u}{x_{1}}(x_{1}+\lambda h,\cdot)\dif\lambda.
+        \end{equation}
+        We can see:
+        \begin{equation}
+            \int_{\mathbb{R}_{+}^{n}}|\nabla_{h}u|^{p}\le\int_{0}^{1}\dif\lambda\int_{\mathbb{R}_{+}^{n}}|\pdfFrac{u}{x_{1}}(x_{1}+\lambda h,\cdot)|^{p}\dif x.
+        \end{equation}
+        Then:
+        \begin{equation}
+            \|\nabla_{h}u\|_{L^{p}}\le\|\pdfFrac{u}{x_{1}}\|_{L^{p}}.
+        \end{equation}
+    \end{proof}
+    Back to this theorem. It's clear to see that: $\forall$$u\in C^{\infty}(\mathbb{R}_{+}^{n})$, $\forall$ multiple index $\alpha$, the following is true:
+    \begin{equation}
+        \partial^{\alpha}\nabla_{h}u=\nabla_{h}\partial^{\alpha}u.
+    \end{equation} 
+    If $\alpha=(k_{1},\cdots,k_{n})$, we define $\beta=(k_{1}+1,\cdots,k_{n})$. By \eqref{eq:Foundamental}, 
+    \begin{equation}
+        \|\partial^{\alpha}\nabla_{h}u\|_{p}\le\|\partial^{\beta}u\|_{p}.
+    \end{equation}
+    Then:
+    \begin{equation}
+        \begin{aligned}
+        \|\nabla_{h}u\|_{H^{m-1,p}}&=\sum_{|\alpha|\le m-1}\|\partial^{\alpha}\nabla_{h}u\|_{p}\\
+        &\le\sum_{|\alpha|\le m-1}\|\partial^{\beta}u\|_{p}\\
+        &\le\sum_{|\beta|\le m}\|\partial^{\beta}u\|_{p}\\
+        &=\|u\|_{H^{m,p}}.
+        \end{aligned}
+    \end{equation}
+\end{proof}
+\section*{P135 Problem2}
+Claim: the result is true for $-1\le k\le m$.
 \end{document}
