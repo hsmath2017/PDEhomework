@@ -1,0 +1,176 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\usepackage{color}
+\newtheorem{Definition}{\hspace{2em}定义}
+\newtheorem{Example}{\hspace{2em}例}
+\newtheorem{Thm}{\hspace{2em}定理}
+\newtheorem{Lem}{\hspace{2em}Lemma}
+\newtheorem{cor}{\hspace{2em}推论}
+% some common command
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Homework\# 14}
+\author{Shuang Hu(26)}
+\begin{document}
+\maketitle
+\section*{P150 Problem2}
+\begin{proof}
+    $u_t$ times $Lu$, then integral it on $Q_{t}$, we can see:
+    \begin{equation}
+        \int_{Q_{t}}u_{t}Lu\dif x\dif t=I_{1}(t)+I_{2}(t).
+    \end{equation}
+    While 
+    \begin{equation}
+        I_{1}(t)=-\int_{Q_{t}}\left(\sum_{i}b_{i}\pdfFrac{u}{x_{i}}+cu\right)u_{t}\dif x\dif t,
+    \end{equation}
+    \begin{equation}
+        I_{2}(t)=\int_{Q_{t}}\left(\pdfFrac{^2u}{t^2}-\sum_{i,j}\pdfFrac{}{x_{i}}\left(a_{ij}\pdfFrac{u}{x_{j}}\right)\right)u_{t}\dif x\dif t.
+    \end{equation}
+    Then: set the vector function 
+    \begin{equation}
+        F(x)=\left(\sum a_{1j}\pdfFrac{u}{x_{j}},\cdots,\sum a_{nj}\pdfFrac{u}{x_{j}}\right)
+    \end{equation}
+    By $(a_{ij})$ elliptic, we can see:
+    \begin{equation}
+        \label{eq:evaOfI2}
+        \begin{aligned}
+            &-\int_{0}^{t}\int_{\Omega}\nabla\cdot F\dif x\dif t\\
+            =&\int_{0}^{t}\int_{\Omega}\sum_{i,j}\pdfFrac{^{2}u}{x_{i}t}a_{ij}\pdfFrac{u}{x_{j}}\dif x\dif t-\int_{0}^{t}\int_{\partial\Omega}u_{t}F\cdot n\dif S\dif t.\\
+            \le&\int_{0}^{t}\int_{\Omega}\sum_{i,j}\pdfFrac{^{2}u}{x_{i}t}a_{ij}\pdfFrac{u}{x_{j}}\dif x\dif t+\sigma\alpha\int_{0}^{t}\int_{\partial\Omega}uu_{t}\dif S\dif t.
+        \end{aligned}
+    \end{equation}
+    If we denote $A=(a_{ij})$, the second inequality is derived from:
+    \begin{equation}
+        (A\begin{bmatrix}
+            &\pdfFrac{u}{x_{1}}\\
+            &\vdots\\
+            &\pdfFrac{u}{x_{n}}
+        \end{bmatrix})\cdot\mathbf{n}=\begin{bmatrix}
+            \pdfFrac{u}{x_{1}}&\cdots&\pdfFrac{u}{x_{n}}\\
+        \end{bmatrix}A\mathbf{n}\ge\alpha \pdfFrac{u}{\mathbf{n}}=-\sigma\alpha\mathbf{n}.
+    \end{equation}
+    Then by P145 Theorem 1.1, we can see that:
+    \begin{equation}
+        \begin{aligned}
+            I_{2}(t)\le&\frac{1}{2}\int_{0}^{t}\int_{\Omega}\pdfFrac{}{t}\left(\left(\pdfFrac{u}{t}\right)^{2}+\sum_{i,j}a_{ij}\pdfFrac{u}{x_{i}}\pdfFrac{u}{x_{j}}\right)\dif x\dif t\\
+            &-\frac{1}{2}\int_{0}^{t}\int_{\Omega}\sum_{i,j}\pdfFrac{a_{ij}}{t}\pdfFrac{u}{x_{i}}\pdfFrac{u}{x_{j}}\dif x\dif t+\sigma\alpha\int_{0}^{t}\int_{\partial\Omega}uu_{t}\dif S\dif t\\
+        \end{aligned}
+    \end{equation}
+    On the other hand:
+    \begin{equation}
+        \int_{0}^{t}\int_{\partial\Omega}uu_{t}\dif S\dif t=\frac{1}{2}(\int_{\partial\Omega}u^{2}(\mathbf{x},t)\dif S-\int_{\partial\Omega}u^{2}(\mathbf{x},0)\dif S)
+    \end{equation}
+    Define the energy norm
+    \begin{equation}
+        \label{eq:enermy}
+        E(t)=\int_{\Omega}(u^2+u_{t}^{2}+\sum u_{x_{i}}^{2})\dif x+\int_{\partial\Omega}u^{2}\dif S.
+    \end{equation}
+    We can see:
+    \begin{equation}
+        \int_{0}^{t}\int_{\Omega}u_{t}Lu\dif x\dif t=\frac{1}{2}\left[\int_{\Omega}\left(\pdfFrac{u}{t}\right)^{2}+\sum_{i,j}a_{ij}\pdfFrac{u}{x_{i}}\pdfFrac{u}{x_{j}}+\int_{\partial\Omega}u^{2}\dif S\right]_{t=0}^{t=t}+\tilde{I_{1}}(t).
+    \end{equation}
+    Where:
+    \begin{equation}
+        |\tilde{I_{1}}(t)|\le C\int_{0}^{t}E(\tau)\dif\tau.
+    \end{equation}
+    Then, by the same tragedy with the proof of Theorem 1.1, we can derive the enermy inequality as:
+    \begin{equation}
+        E(t)\le C(E(0)+\int_{Q_{t}}f^{2}\dif x\dif t).
+    \end{equation}
+    {\color{red}摆了摆了}
+\end{proof}
+\section*{P150 Problem3}
+As $I(t)\in C^{2}(\mathbb{R})$, first we induce the following derivatives:
+\begin{equation}
+    \label{eq:1orderdir}
+    (e^{\lambda t}I(t))'=e^{\lambda t}(I'(t)+\lambda I(t)).
+\end{equation}
+\begin{equation}
+    \label{eq:2orderdir}
+    (e^{\lambda t}I(t))''=e^{\lambda t}(\lambda^{2}I(t)+2\lambda I'(t)+I''(t)).
+\end{equation}
+Then we can see:
+\begin{equation}
+    \label{eq:linearcomb}
+    (e^{\lambda t}I(t))''+k(e^{\lambda t}I(t))'=e^{\lambda t}(I''(t)+(2\lambda+k)I'(t)+(\lambda^2+\lambda k)I(t)).
+\end{equation}
+If we set:
+\begin{equation}
+    \label{eq:restrict}
+    \left\{
+        \begin{aligned}
+            2\lambda+k&=-C_1\\
+            \lambda^2+\lambda k&=-C_2\\
+        \end{aligned}
+    \right.
+\end{equation}
+by the condition, we can derive that 
+\begin{equation}
+    \label{eq:firstint}
+    (e^{\lambda t}I(t))''+k(e^{\lambda t}I(t))'\le e^{\lambda t}M.
+\end{equation}
+Then set $h(t)=e^{kt}(e^{\lambda t}I(t))'$, we can derive that $h'(t)\le e^{(\lambda+k)t}M$.
+
+As $\lim_{t\rightarrow -\infty}h(t)=0$, we can see that $h(t)\le\frac{e^{(\lambda+k)t}}{\lambda+k}M$, so:
+\begin{equation}
+    (e^{\lambda t}I(t))'\le\frac{e^{\lambda t}}{\lambda+k}M
+\end{equation}
+Then:
+\begin{equation}
+    e^{\lambda t}I(t)\le\frac{e^{\lambda t}}{\lambda(\lambda+k)}M\Rightarrow I(t)\le\frac{M}{\lambda(\lambda+k)}.
+\end{equation}
+By \eqref{eq:restrict}, $I(t)\le-\frac{M}{C_{2}}$. If $C_{2}\ge 0$, there is no such $I(t)$.
+\section*{P155 Problem1}
+\begin{proof}
+    First, consider the evaluation of $\|\partial_{t}u\|_{r-1}^{2}$, by $(2.1)$, we can see:
+    \begin{equation}
+        \label{eq:utevaluate}
+        \|\partial_{t}u(h)\|_{r-1}^{2}\le C_{r-1}\left(\|u_{t}(0,\cdot)\|_{r-1}^{2}+\|u_{tt}(0,\cdot)\|_{r-2}^{2}+\int_{0}^{h}\|\partial_{t}f(t,\cdot)\|_{r-2}^{2}\dif t\right)
+    \end{equation}
+    On the other hand, $Lu=u_{tt}-\tilde{L}u$, while $\tilde{L}$ is an elliptic operator, so:
+    \begin{equation}
+        \|u_{tt}(0,\cdot)\|_{r-2}^{2}\le\|f+\tilde{L}u\|_{r-2}^{2}\le C\|f(0,\cdot)\|_{r-2}^{2}.
+    \end{equation}
+    While $C$ is a constant. So: by \eqref{eq:utevaluate}
+    \begin{equation}
+        \|\partial_{t}u(h)\|_{r-1}^{2}\le C_{r-1}(\|\phi_{1}\|_{r-1}^{2}+\int_{0}^{h}\|\partial_{t}f(t,\cdot)\|_{r-1}^{2}\dif t+\|f(0,\cdot)\|_{r-2}^{2}).
+    \end{equation}
+    If $j>1$, we can do this evaluate in the same way. Then, choose $j\in[0,r]$ and sum them up, we can see:
+    \begin{equation}
+        \sum_{j=0}^{r}\|\partial_{t}^{j}u(h)\|_{r-j}^{2}\le C_{r}\left(\|\phi_{0}\|_{r}^{2}+\|\phi\|_{1}^{2}+\int_{0}^{h}\sum_{j=0}^{r-1}\|\partial_{t}^{j}f(t,\cdot)\|_{r-j-1}^{2}\dif t+\sum_{j=0}^{r-2}\|\partial_{t}^{j}f(0,\cdot)\|_{r-j-2}^{2}\right).
+    \end{equation}
+\end{proof}
+\end{document}
