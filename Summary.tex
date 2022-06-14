@@ -1,0 +1,130 @@
+\documentclass[a4paper]{ctexart}
+\usepackage{geometry}
+% useful packages.
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+\newtheorem{Definition}{\hspace{2em}定义}[section]
+\newtheorem{Example}{\hspace{2em}例}[section]
+\newtheorem{Thm}{\hspace{2em}定理}[section]
+\newtheorem{Lem}{\hspace{2em}Lemma}[section]
+\newtheorem{cor}{\hspace{2em}推论}[section]
+% some common command
+\newcommand{\supp}{\text{supp}}
+\newcommand{\Rn}{\mathbb{R}^{n}}
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Summary}
+\author{Shuang Hu}
+\begin{document}
+\maketitle
+\section{广义函数与Sobolev空间}
+\begin{Example}
+    考虑以下函数列：
+    \begin{equation}
+        \varphi_{n}(x)=
+        \left\{
+            \begin{aligned}
+            e^{\frac{1}{n^{2}x^{2}-1}},&|x|<\frac{1}{n}\\
+            0,&|x|\ge\frac{1}{n}\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    当$n\rightarrow\infty$时，$\varphi_{n}(x)$在常义函数的意义下不收敛。\textbf{能否进一步扩充函数的定义，使得这样的“极限函数”存在？}
+\end{Example}
+\begin{Definition}[基本空间]
+基本空间指满足一定条件的函数所构成的函数空间。对于区域$\Omega\subset\mathbb{R}^{n}$,本书主要讨论三个常见的基本空间：$C_{c}^{\infty}(\Omega)$,$C^{\infty}(\Omega)$,$\mathscr{S}(\Omega)$.
+\end{Definition}
+\begin{Definition}[$C_{c}^{\infty}(\Omega)$]
+    $C_{c}^{\infty}(\Omega)$是由$\Omega$上无限次连续可微且有紧支集的函数所构成的线性空间。其上的拓扑定义如下：
+
+    若一列函数$\varphi_{n}\rightarrow\varphi\in C_{c}^{\infty}(\Omega)$, 则这列函数满足下面两个条件：
+    \begin{itemize}
+        \item $\cup_{n=1}^{\infty}\supp(\varphi_{n})\subset K$, $K$是$\mathbb{R}^{n}$中的紧集。
+        \item \begin{equation}
+            \|\partial^{\alpha}\varphi_{n}(x)-\partial^{\alpha}\varphi(x)\| \rightrightarrows0 \forall \alpha\in\mathbb{Z}^{n}.
+        \end{equation}
+    \end{itemize}
+\end{Definition}
+\begin{Definition}[$C^{\infty}(\Omega)$]
+    $C^{\infty}(\Omega)$是由$\Omega$上无限次连续可微且在无穷远处趋于0的函数所构成的线性空间。其上的拓扑定义如下：
+    
+    若一列函数$\varphi_{n}\rightarrow\varphi\in C^{\infty}(\Omega)$，则对任意紧集$K$和多重指标$\alpha$，
+    \begin{equation}
+        \|\partial^{\alpha}\varphi_{n}(x)-\partial^{\alpha}\varphi(x)\| \rightrightarrows0.(x\in K).
+    \end{equation}
+\end{Definition}
+\begin{Definition}[$\mathscr{S}(\Omega)$]
+    $\mathscr{S}(\Omega)$由满足如下条件的函数组成:
+    \begin{equation}
+        \lim_{|x|\rightarrow\infty}x^{\alpha}\partial^{\beta}\varphi(x)\rightarrow 0\forall\alpha,\beta.
+    \end{equation}    
+    其上的拓扑：
+
+    若$\varphi_{n}\rightarrow 0$, 则
+    \begin{equation}
+        \sup_{x\in\mathbb{R}^{n}}x^{\alpha}\partial^{\beta}\varphi_{n}(x)=0.
+    \end{equation}
+\end{Definition}
+\begin{Thm}
+    \begin{equation}
+        C_{c}^{\infty}(\Omega)\subset\mathscr{S}(\Omega)\subset C^{\infty}(\Omega).
+    \end{equation}
+\end{Thm}
+\begin{Thm}
+    $C_{c}^{\infty}(\mathbb{R}^{n})$在$L^{p}(\mathbb{R}^{n})$和$C^{0}(\mathbb{R}^{n})$中稠密。
+\end{Thm}
+证明提示：$L^{p}$函数定义，Lusin定理，利用卷积实现光滑化。
+\begin{Definition}
+    定义
+    \begin{equation}
+        \varphi(x)=
+        \left\{
+            \begin{aligned}
+            e^{\frac{1}{|x|^{2}-1}},&|x|<1\\
+            0,&|x|\ge1\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    由此导出光滑化子$\alpha_{\epsilon}:=\frac{1}{\epsilon^{n}}\varphi(\frac{x}{\epsilon})$。该函数满足两个条件：
+    \begin{itemize}
+        \item $\alpha_{\epsilon}\in C_{c}^{\infty}(\mathbb{R}^{n})$.
+        \item $\int_{\mathbb{R}^{n}}\alpha_{\epsilon}(x)\dif x=1$.
+    \end{itemize}
+\end{Definition}
+\begin{Definition}[局部可积]
+    如果$\Omega$上的一个函数$\varphi$在任意紧集$K\subset\Omega$上Lebesgue可积，则称该函数在$\Omega$上\textbf{局部可积}，记$\varphi\in L_{loc}^{1}(\Omega)$.
+\end{Definition}
+\begin{Definition}
+    设$u\in L_{loc}^{1}(\mathbb{R}^{n})$, 则$u_{\epsilon}(x):=u*\alpha_{\epsilon}\in C^{\infty}(\mathbb{R}^{n})$. 当$\epsilon\rightarrow 0$, 若$u\in X$, $X=C^{0}(\mathbb{R}^{n})$或$X=L^{p}(\mathbb{R}^{n})$, 则$u_{\epsilon}\rightarrow u(X)$.
+\end{Definition}
+\end{document}
