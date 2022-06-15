@@ -345,4 +345,205 @@
     \end{equation}
     $a(x,\xi)$称为$A$的\textbf{象征}。
 \end{Definition}
+\begin{Definition}[非负整指数Sobolev空间]
+    设$\Omega\subset\Rn$是一个给定区域，对$m\ge 0,1\le p\le \infty$，可以定义Sobolev空间$W^{m,p}(\Omega)$为满足条件
+    \begin{equation}
+        D^{\alpha}u\in L^{p}(\Omega)
+    \end{equation}
+    的所有广义函数$u$构成的集合，定义其上的范数为:
+    \begin{equation}
+        \label{norm}
+        \|u\|:=(\sum_{|\alpha|\le m}\|D^{\alpha}u\|_{L^{p}(\Omega)}^{p})^{\frac{1}{p}}.
+    \end{equation}
+    在$p=2$时，记$W^{m,2}(\Omega):=H^{m}(\Omega)$。此时可以在这个线性空间上赋予内积如下：
+    \begin{equation}
+        \innerprod{u}{v}_{m}:=\sum_{|\alpha|\le m}\innerprod{D^{\alpha}u}{D^{\alpha}v}_{L^{2}(\Omega)}.
+    \end{equation}
+\end{Definition}
+\begin{Thm}
+    $W^{m,p}(\Omega)$是Banach空间。
+\end{Thm}
+提示：利用$L^{p}$空间的完备性。
+
+\begin{Thm}
+    设$\Omega$是边界光滑的有界区域，则任意$W^{m,p}(\Omega)$中的函数$u$都可以用$C^{\infty}(\overline{\Omega})$函数来逼近。此即，$W^{m,p}(\Omega)$可以看作在$C^{\infty}$中赋予范数\eqref{norm}后的完备化空间。该空间也记为$H^{m,p}(\Omega)$。
+\end{Thm}
+证明思路：局部化+展平（太长了，也看不懂）
+\begin{Thm}
+    $m\ge 1$时，$C_{c}^{\infty}(\Rn_{+})$在$H^{m,p}(\Rn_{+})$上并不稠密。
+\end{Thm}
+提示：考虑$v(x)=e^{-|x|^{2}}$.
+\begin{Definition}
+    $C_{c}^{\infty}(\Omega)$函数按\eqref{norm}完备化形成的空间记为$H_{0}^{m,p}(\Omega)$。
+\end{Definition}
+\begin{Thm}
+    $\Omega$有界且$m\ge 1$时，$H_{0}^{m,p}(\Omega)\subsetneqq H^{m,p}(\Omega)$。
+\end{Thm}
+因为这个时候$u|_{\partial\Omega}\equiv 0$。
+\begin{Definition}[负整指数Sobolev空间]
+    对正整数$m$,$1\le p<\infty$,将$H_{0}^{m,p}(\Omega)$的对偶空间$(H_{0}^{m,p}(\Omega))'$\textbf{视为$\mathcal{D}'(\Omega)$的子空间}，称为$H^{-m,p'}(\Omega)$，其中$\frac{1}{p}+\frac{1}{p'}=1$。
+\end{Definition}
+\begin{rem}
+    我们把$H^{-m}(\Omega)$视作$\mathcal{D}'(\Omega)$的子空间，则对应的泛函应当是：
+    \begin{equation}
+        v(u)=\innerprod{v}{\bar{u}}_{L^{2}(\Omega)}
+    \end{equation}
+    而不是:
+    \begin{equation}
+        v(u)=\sum_{|\alpha|\le m}\innerprod{D^{\alpha}v}{D^{\alpha}u}_{L^{2}(\Omega)}.
+    \end{equation}
+\end{rem}
+在负整指数Sobolev空间中，可以引入如下范数(实际上就是算子范数)：
+\begin{equation}
+    \|u\|_{H^{-m,p'}(\Omega)}=\sup_{v\in H_{0}^{m,p}(\Omega)}\frac{|\innerprod{u}{v}|}{\|v\|_{H_{0}^{m,p}(\Omega)}}.
+\end{equation}
+当$s$是一般的实数时，我们可以利用Fourier变换给出$H^{s}(\Rn)$的定义。
+\begin{Definition}
+    对于$s\in\mathbb{R}$,记$H^{s}(\Rn)$是使得
+    \begin{equation}
+        (1+|\xi|^{2})^{\frac{s}{2}}\hat{u}(\xi)\in L^{2}(\Rn)
+    \end{equation}
+    的所有广义函数$u\in\mathscr{S}'(\Rn)$构成的空间。其上内积定义为：
+    \begin{equation}
+        \innerprod{u}{v}_{s}:=\int_{\Rn}(1+|\xi|^{2})^{s}\hat{u}(\xi)\overline{\hat{v}(\xi)}\dif\xi.
+    \end{equation}
+\end{Definition}
+\begin{Thm}
+    $H^{s}(\Rn)$是Hilbert空间，且$C_{c}^{\infty}(\Rn)$在$H^{s}(\Rn)$中稠密。
+\end{Thm}
+\begin{Example}
+    $K=I-\varDelta$,$f\in H^{-\infty}(\Rn)$, $(I-\varDelta)^{m}f\in H^{t}(\Rn)$, 则$f\in H^{2m+t}(\Rn)$。
+\end{Example}
+\begin{Thm}[Sobolev不等式]
+    设$p$满足$1\ge \frac{1}{p}>\frac{k}{n}$,$\frac{1}{q}=\frac{1}{p}-\frac{k}{n}$，$k\le m$,则对于$u\in C_{c}^{\infty}(\Rn)$，有：
+    \begin{equation}
+        \|u\|_{H^{m-k,q}(\Rn)}\le C\|u\|_{H^{m,p}(\Rn)}.
+    \end{equation}
+\end{Thm}
+\begin{Thm}[Sobolev嵌入定理]
+    以下，$\frac{1}{q}=\frac{1}{p}-\frac{k}{n}$。
+    
+    (1)若$1\ge\frac{1}{p}>\frac{k}{n}$，$k\le m$，则$H^{m,p}(\Omega)$可嵌入$H^{m-k,q}(\Omega)$。
+
+    (2)若$\frac{1}{p}=\frac{k}{n},k\le m$,则对任意$q\in\mathbb{R}$,$H^{m,p}(\Omega)$可以嵌入$H^{m-k,q}(\Omega)$。
+
+    (3)设$s>\frac{n}{2}+k$，则$H^{s}(\Rn)$可以连续嵌入到$C^{k}(\Rn)$。
+\end{Thm}
+\begin{Thm}[迹定理]
+    设$\gamma$是$C^{\infty}(\overline{\Rn_{+}})$函数$\varphi(x_{1},\cdots,x_{n})$到边界$x_{n}=0$上取值的映射，则它可以连续扩张到整个$H^{1}(\Rn_{+})$上，且$\gamma(H^{1}(\Rn_{+}))
+    \subset H^{\frac{1}{2}}(\mathbb{R}^{n-1})$。
+\end{Thm}
+\section{偏微分方程一般理论}
+\begin{Definition}[特征]
+    考察线性方程
+    \begin{equation}
+        \label{LinearPDE}
+        \sum_{|\alpha|\le m}a_{\alpha}(x)\partial_{x}^{\alpha}u=f(x).
+    \end{equation}
+    其线性主部为:
+    \begin{equation}
+        \sum_{|\alpha|=m}a_{\alpha}(x)\partial_{x}^{\alpha}u.
+    \end{equation}
+    如果曲面$\pi:\varphi(x_{1},\cdots,x_{n})=0$满足:
+    \begin{equation}
+        \sum_{|\alpha|=m}a_{\alpha_{1}\cdots\alpha_{n}}(x)(\varphi_{x_{1}})^{\alpha_{1}}\cdots(\varphi_{x_{n}})^{\alpha_{n}}=0.
+    \end{equation}
+    则称$\pi$为方程\eqref{LinearPDE}的\textbf{特征曲面}。
+\end{Definition}
+根据上一章的理论，方程\eqref{LinearPDE}的微分算子对应的象征为：
+\begin{equation}
+    \sum_{|\alpha|\le m}a_{\alpha}(x)(i\xi)^{\alpha}.
+\end{equation}
+\begin{Definition}[特征集]
+    方程\eqref{LinearPDE}的特征集为：
+    \begin{equation}
+        \varGamma:=\{(x,\xi)|\xi\neq 0,\sum_{|\alpha|=m}a_{\alpha}(x)\xi^{\alpha}=0\}.
+    \end{equation}
+\end{Definition}
+\begin{Definition}[主象征]
+    \eqref{LinearPDE}对应的主象征定义为：
+    \begin{equation}
+        p_{m}(x,\xi)=\sum_{|\alpha|=m}a_{\alpha}(x)(i\xi)^{\alpha}.
+    \end{equation}
+\end{Definition}
+接下来我们需要利用主象征函数对偏微分方程进行分类。
+\begin{Definition}[椭圆算子]
+    若对某一点$x\in\Omega$以及任意的$\xi\in\Rn\setminus\{0\}$,$p_{m}(x,\xi)\neq 0$,则称算子$p(x,D)$在$x$点为\textbf{椭圆型算子}。
+\end{Definition}
+\begin{Example}
+    Laplace算子$\varDelta$的主象征是：
+    \begin{equation}
+        p_{2}(x,\xi)=-\sum_{i=1}^{n}\xi_{i}^{2}.
+    \end{equation}
+    该函数为0当且仅当$\xi=0$,所以该算子是椭圆型的。
+\end{Example}
+\begin{Definition}[双曲型算子]
+    如果存在一个方向$\tau\in\Rn\setminus\{0\}$,使得对一切$x\in\Omega$以及任意不平行于$\tau$的方向$\xi$，方程$p_{m}(x,\lambda\tau+\xi)=0$关于$\lambda$有$m$个两两互异实根，则称$p(x,D)$为关于方向$\tau$的严格双曲型算子。
+\end{Definition}
+\begin{Example}
+    PDE$\pdfFrac{^2u}{t^2}=a^2(\pdfFrac{^2u}{x^2}+\pdfFrac{^2u}{y^2})$在特征锥$t^2>a^2(x^2+y^2)$上严格双曲。
+\end{Example}
+\begin{Definition}[主型算子]
+    如果在$P(x,D)$的特征集上$\nabla_{\xi}p_{m}(x,\xi)\neq 0$,则称$P(x,D)$为\textbf{主型算子}。
+\end{Definition}
+\begin{Definition}[抛物型算子]
+    在$\mathbb{R}^{n+1}$中形为：
+    \begin{equation}
+        \partial_{x_{0}}-\sum_{j,k=1}^{n}a_{jk}(x)\partial_{x_{j}}\partial_{x_{k}}+\sum_{j=1}^{n}b_{j}(x)\partial_{x_{j}}+c(x)
+    \end{equation}
+    的二阶偏微分算子，在矩阵$(a_{jk})$正定时，称为\textbf{抛物型算子}。
+\end{Definition}
+
+\begin{Definition}[基本解]
+    对于一个线性微分算子$P(\partial)$,如果存在广义函数$E$使得$P(\partial)E=\delta$,则称$E$为算子$P(\partial)$的\textbf{基本解}。
+\end{Definition}
+下面用两个例子介绍求基本解的两种常见方法。
+\begin{Example}[首次积分法]
+    求方程
+    \begin{equation}
+        \difFrac{y}{x}+ay=0
+    \end{equation}
+    的基本解。
+\end{Example}
+我们知道，$\difFrac{ye^{ax}}{x}=e^{ax}(\difFrac{y}{x}+ay)$。那么，要求
+\begin{equation}
+    \difFrac{y}{x}+ay=\delta
+\end{equation}
+的解，可以将其转化为:
+\begin{equation}
+    \difFrac{}{x}(ye^{ax})=e^{ax}\delta=\delta.
+\end{equation}
+从而：
+\begin{equation}
+    ye^{ax}=H(x)\Rightarrow y=e^{-ax}H(x).
+\end{equation}
+\begin{Example}[Fourier变换法]
+    求Cauchy-Riemann算子$\pdfFrac{}{x}+i\pdfFrac{}{y}$的基本解。
+\end{Example}
+在用FT法求基本解时，主要的依据是$F[\delta]=1$.
+
+如果广义函数$T$满足:
+\begin{equation}
+    \pdfFrac{T}{x}+i\pdfFrac{T}{y}=\delta(x,y),
+\end{equation}
+两边关于$y$作Fourier变换得到：
+\begin{equation}
+    \pdfFrac{\hat{T}}{x}-\eta\hat{T}=\delta(x).
+\end{equation}
+解得：
+\begin{equation}
+    \label{hatT}
+    \hat{T}=e^{\eta x}H(x)+C(\eta)e^{\eta x}.
+\end{equation}
+要使$\hat{T}\in\mathscr{S}(\Rn)$,需要取$C(\eta)=-H(\eta)$。代入\eqref{hatT},作逆Fourier变换即可得$T(x,y)=\frac{1}{2\pi}\frac{1}{x+iy}$.
+\begin{Definition}[Cauchy问题的基本解]
+    考虑Cauchy问题：
+    \begin{equation}
+        \begin{aligned}
+            &\pdfFrac{u}{t}=P(\pdfFrac{}{x})u\\
+            &u(0,x)=u_{0}(x)\\
+        \end{aligned}
+    \end{equation}
+    该方程满足初始条件$u(0,x)=\delta(x)$的解称为基本解。
+\end{Definition}
 \end{document}
