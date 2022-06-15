@@ -16,6 +16,7 @@
 \newtheorem{Thm}{\hspace{2em}定理}[section]
 \newtheorem{Lem}{\hspace{2em}Lemma}[section]
 \newtheorem{cor}{\hspace{2em}推论}[section]
+\newtheorem{rem}{\hspace{2em}注记}[section]
 % some common command
 \newcommand{\supp}{\text{supp}}
 \newcommand{\Rn}{\mathbb{R}^{n}}
@@ -139,6 +140,10 @@
     \begin{equation}
     L_{loc}^{1}(\Omega)\subset\mathcal{D}'(\Omega).
     \end{equation}
+    对应$f\in L_{loc}^{1}(\Omega)$的泛函为:
+    \begin{equation}
+        \innerprod{f}{\varphi}:=\int_{\Omega}f\varphi\dif x.
+    \end{equation}
 \end{Thm}
 \begin{Definition}
     定义基本函数空间$X$上的泛函$\delta$为：对$\phi\in X$,
@@ -151,5 +156,94 @@
 \end{Thm}
 \begin{Thm}
     $\delta\in\mathcal{D}'(\Omega)$,$\delta\in\mathscr{S}'(\Omega)$,$\delta\in\epsilon'(\Omega)$.
+\end{Thm}
+\begin{Definition}[支集]
+    \label{support}
+    函数$\varphi\in C^{\infty}(\Omega)$的支集定义为：
+    \begin{equation}
+        \supp\varphi:=\mathcal{C}(\{\mathbf{x}:\varphi(\mathbf{x})\neq 0\})
+    \end{equation}
+    $\mathcal{C}$表示取闭包。
+\end{Definition}
+\begin{rem}
+    一般我们无法按\ref{support}的形式定义一个分布的支集，因为分布是整体定义的，我们一般无法讨论一个分布"在某点处"的取值。
+\end{rem}
+\begin{Definition}
+    对于$T\in\mathcal{D}'(\Omega)$, 如果对任意的$\varphi\in C_{c}^{\infty}(\Omega')$, 有
+    \begin{equation}
+        \innerprod{T}{\varphi}=0,
+    \end{equation}
+    则$T$在$\Omega'$内\textbf{取零值}。
+\end{Definition}
+\begin{Thm}
+    如果广义函数$T\in\mathcal{D}'(\Omega)$在每个点的开邻域上取零值，那么在整个$\Omega$上$T\equiv 0$。
+\end{Thm}
+证明提示：有限覆盖+单位分解。
+\begin{Definition}
+    使广义函数$T$取零值的最大开集的补集，称广义函数$T$的\textbf{支集}，记为$\supp T$。
+\end{Definition}
+\begin{Example}
+    $\supp\delta=\{0\}$.
+\end{Example}
+\begin{Thm}
+    任何$\epsilon'(\Omega)$的广义函数$T$具有紧支集。任意具有紧支集的$T\in\mathcal{D}'(\Omega)$必为$\epsilon'(\Omega)$广义函数。
+\end{Thm}
+\begin{Definition}[弱极限]
+    如果一列属于某一基本函数空间的广义函数列$\{T_{k}\}$，对基本空间上的任意元素$\varphi$，满足:
+    \begin{equation}
+        \innerprod{T_{k}}{\varphi}\rightarrow 0.
+    \end{equation}
+    则称$T_{k}$\textbf{弱收敛}于0。
+\end{Definition}
+\begin{Example}
+    \begin{equation}
+        \lim_{\epsilon\rightarrow 0} \frac{2x}{x^2+\epsilon^2}=P.V.(\frac{2}{x}).
+    \end{equation}
+\end{Example}
+\begin{Thm}
+    若$T\in\mathcal{D}'(\mathbb{R}_{y}^{n})$，则$\innerprod{T_{y}}{\alpha_{\epsilon}(x-y)}$为$\mathbb{R}_{x}^{n}$上的$C^{\infty}$函数。
+
+    这一过程称为\textbf{广义函数$T$的正则化}。
+\end{Thm}
+\begin{Thm}
+    当$T\in\mathcal{D}'(\Rn)$,$T_{\epsilon}\rightarrow T(\mathcal{D}'(\Rn))$.
+\end{Thm}
+证明思路:$T_{\epsilon}$为常义函数，其作用在$\varphi$上的值可用积分表示。估计积分表达式即可。
+\begin{Definition}[广义导数]
+    广义函数$T$的$\alpha$阶导数定义为：
+    \begin{equation}
+        \innerprod{\partial^{\alpha}T}{\varphi}=(-1)^{|\alpha|}\innerprod{T}{\partial^{\alpha}\varphi}.
+    \end{equation}
+\end{Definition}
+\begin{Example}
+    Heaviside函数$H(x)$满足$H'(x)=\delta$.
+\end{Example}
+\begin{Thm}
+    如果一个广义函数的导数为连续函数，那么这个广义函数一定是常义的$C^{1}$函数。
+\end{Thm}
+证明思路：$-\innerprod{T}{\partial\varphi}=\innerprod{g}{\varphi}$,考察$\int g\dif x$.
+\begin{Definition}
+    设$T\in\mathcal{D}'(\Rn)$,$\alpha\in C^{\infty}(\Rn)$, 定义:
+    \begin{equation}
+        \innerprod{\alpha T}{\varphi}=\innerprod{T}{\alpha\varphi}.
+    \end{equation}
+\end{Definition}
+\begin{Definition}
+    设$S,T$为两个广义函数，则$S*T$定义为：
+    \begin{equation}
+        \innerprod{S*T}{\varphi}=\innerprod{S_{x}}{\innerprod{T_{y}}{\varphi(x+y)}}.
+    \end{equation}
+\end{Definition}
+\begin{Example}
+    \begin{equation}
+        tH(t)*e^{t}H(t)=(e^{t}-t-1)H(t).
+    \end{equation}
+\end{Example}
+\begin{Thm}
+    如果$T$为$\epsilon'(\Rn)$广义函数，$S$为$\mathcal{D}'(\Rn)$广义函数，那么$S*T$为$\mathcal{D}'(\Rn)$广义函数。
+\end{Thm}
+证明思路：设$T$的紧支集为$K$，构造辅助函数$\zeta(y)$使得其在$K$上取值为1。
+\begin{Thm}
+    $\epsilon'(\Rn)$广义函数全体关于线性运算和卷积运算构成一个可交换的有单位元的代数，$\delta$为其单位元。
 \end{Thm}
 \end{document}
