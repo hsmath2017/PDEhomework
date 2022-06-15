@@ -546,4 +546,185 @@
     \end{equation}
     该方程满足初始条件$u(0,x)=\delta(x)$的解称为基本解。
 \end{Definition}
+\section{椭圆型方程}
+\begin{Definition}[椭圆型方程]
+    \label{Elliptic}
+    \textbf{二阶椭圆型方程}具有如下形式:
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                &Lu=\sum_{i,j=1}^{n}a_{ij}(x)\pdfFrac{^2u}{x_{i}\partial x_{j}}+\sum_{i=1}^{n}b_{i}(x)\pdfFrac{u}{x_{i}}+c(x)u=f,\\
+                &u|_{\partial\Omega}=0.\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    $a_{ij}$满足对称性条件，以及椭圆性条件
+    \begin{equation}
+        \sum_{i,j=1}^{n}a_{ij}\xi_{i}\xi_{j}\ge\alpha\sum_{i=1}^{n}\xi_{i}^{2}.
+    \end{equation}
+\end{Definition}
+在之前对椭圆方程古典解的讨论中，$u\in C^{2}(\Omega)\cap C^{0}(\overline{\Omega})$。这个条件多少显得过于苛刻了些。我们需要找一种方法，来降低对解和右端项正则性的要求。
+
+第一种方法是变分思路。
+\begin{Thm}[变分法]
+    考察泛函
+    \begin{equation}
+        J[u]=\int_{\Omega}\left[\frac{1}{2}|Du|^{2}-uf\right]\dif\mathbf{x}.
+    \end{equation}
+    在边界$\partial\Omega$上取零值的$C^{2}(\Omega)\cap C^{1}(\overline{\Omega})$函数类中$J[u]$取极小值的问题和Poisson方程$-\varDelta u=f$的齐次Dirichlet边值问题求解等价。
+\end{Thm}
+
+反过来，如果仅限于$C^{2}(\Omega)\cap C^{1}(\partial\Omega)$上找最小点，当方程$-\varDelta u=f$没有古典解的时候，最小值点无法取到。这就要求我们扩充$u$的取值范围和方程组“解”的概念。
+
+一种自然的思路是考虑$C^{2}(\Omega)\cap C^{1}(\partial\Omega)$关于$H^{1}(\Omega)$模的完备化空间$H_{0}^{1}(\Omega)$,即在该空间中找$u$使得$J[u]$取最小值。这就是齐次边值问题广义解的提法。
+\begin{Example}
+    已知$f(x,y)=x^2+y^2$,求
+    \begin{equation}
+        \inf_{u-f\in H_{0}^{1}(B)}\int_{B}|\nabla u|^{2}\dif x.
+    \end{equation}
+\end{Example}
+\begin{Example}
+    考虑第三边值问题
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+            &\varDelta u=f\\
+            &\pdfFrac{u}{\nu}+\sigma u|_{\partial\Omega}=0.
+            \end{aligned}
+        \right.
+    \end{equation}
+    该问题的求解和
+    \begin{equation}
+        J[u]=\int_{\Omega}\frac{1}{2}|\nabla u|^{2}+fu\dif x+\frac{1}{2}\int_{\partial\Omega}\sigma u^{2}\dif S(x).
+    \end{equation}
+    求极小点等价。
+\end{Example}
+第二种方法是利用试验函数$v$。
+
+\begin{Thm}
+    如果$u\in H^{2}(\Omega),v\in H^{1}(\Omega)$,利用Green公式可知：
+    \begin{equation}
+        \innerprod{-Lu}{v}_{L^{2}(\Omega)}=a(u,v)-\innerprod{\pdfFrac{u}{\nu}}{v}_{L^{2}(\partial\Omega)}.
+    \end{equation}
+    其中
+    \begin{equation}
+        a(u,v)=\int_{\Omega}\left[\sum_{i,j=1}^{n}a_{ij}\pdfFrac{u}{x_{i}}\pdfFrac{\bar{v}}{x_{j}}+\sum_{i=1}^{n}\left(-b_{i}+\sum_{j=1}^{n}\pdfFrac{a_{ij}}{x_{j}}\right)\pdfFrac{u}{x_{i}}\bar{v}-cu\bar{v}\right]\dif x.
+    \end{equation}
+    当$-Lu=f$时，
+    \begin{equation}
+        \innerprod{-f}{v}_{L^{2}(\Omega)}=a(u,v)-\left(\pdfFrac{u}{\nu},v\right)_{L^{2}(\partial\Omega)}.
+    \end{equation}
+    如果边界条件$\pdfFrac{u}{\nu}=0$,那么原方程等价于：
+    \begin{equation}
+        a(u,v)=-\innerprod{f}{v}_{L^{2}(\Omega)}.
+    \end{equation}
+\end{Thm}
+
+给出广义解的含义后，首当其冲的问题是广义解\textbf{是否存在}。为此我们需要给出算子$L$相关的\textbf{先验估计}。
+\begin{Thm}[Garding不等式]
+    $L$是二阶椭圆算子，$u\in C_{c}^{\infty}(\Omega)$，则存在$C_{1}>0,C_{2}>0$使得：
+    \begin{equation}
+        Re(-Lu,u)_{L^{2}(\Omega)}\ge C_{1}\|u\|_{H^{s}}^{2}-C_{2}\|u\|_{L^{2}}^{2}
+    \end{equation}
+\end{Thm}
+\begin{Thm}[椭圆算子第二基本不等式]
+    存在常数$C$和$\varLambda$,使得当$Re\lambda>\varGamma$时，对一切$C_{c}^{\infty}(\Omega)$函数成立：
+    \begin{equation}
+        \|-Lu+\lambda u\|_{-1}\ge C\|u\|_{1}.
+    \end{equation}
+\end{Thm}
+方程\ref{Elliptic}的求解与$L$的可逆性相关。$L$未必可逆，但根据第二基本不等式，在$\lambda$足够大的时候，$-L+\lambda I$可以为可逆算子。因此可以找到足够大的$\lambda$,使得当$f\in H^{-1}(\Omega)$时，方程组
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            &-Lu+\lambda u=f\\
+            &u|_{\partial\Omega}=0\\
+        \end{aligned}
+    \right.
+\end{equation}
+在$H^{1}(\Omega)$中可解，且解是唯一的。
+
+下面我们开始讨论\ref{Elliptic}的可解性。设$L-\lambda_{0}I$为可逆算子，方程
+\begin{equation}
+    Lu=f
+\end{equation}
+与方程
+\begin{equation}
+    u+\lambda_{0}(L-\lambda_{0})^{-1}u=(L-\lambda_{0})^{-1}f
+\end{equation}
+等价。我们记$M=(L-\lambda_{0})^{-1}$，有以下结论：
+\begin{Thm}
+    $Lu=0$ in $\Omega$, $u=0$ in $\partial\Omega$ 和 $u+\lambda_{0}Mu=0$等价。
+
+    $L^{*}v=0$ in $\Omega$, $v=0$ on $\partial\Omega$ 和 $v+\lambda_{0}M^{*}v=0$等价。
+\end{Thm}
+由Fredholm二择一定理，齐次边值问题$Lu=0$和$L^{*}v=0$的解空间均为有限维，且维数相同。
+
+对于方程
+\begin{equation}
+    \label{eq:ellip}
+    \left\{
+    \begin{aligned}
+        Lu=f,x\in\Omega\\
+        u=0,x\in\partial\Omega\\
+    \end{aligned}
+    \right.
+\end{equation}
+考察辅助方程
+\begin{equation}
+    \label{auxillary}
+    \left\{
+        \begin{aligned}
+    L^{*}v=0,x\in\Omega\\
+    v=0,x\in\partial\Omega\\
+        \end{aligned}
+    \right.
+\end{equation}
+有如下定理:
+\begin{Thm}
+    \eqref{eq:ellip}有解的充要条件是:
+    \begin{equation}
+        \innerprod{f}{\bar{v}}=0,\forall v\in V,
+    \end{equation}
+    其中$V$是\eqref{auxillary}的解空间。
+\end{Thm}
+\begin{Thm}
+    存在至多可列离散点集$\varGamma$使得对任意$\gamma\notin\varGamma$, 
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                (L-\lambda)u=0\\
+                u=0\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    只有零解。
+\end{Thm}
+
+\begin{Thm}
+    如果$L$是$\Omega$上的自伴椭圆算子$(L=L^{*})$,则特征边值问题
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                &Lu=\lambda u,x\in\Omega\\
+                &u|_{\partial\Omega}=0\\
+            \end{aligned}
+        \right.
+    \end{equation}
+    存在可列个特征值$\{\lambda_{i}\}$和对应的特征函数$\{e_{i}\}$,满足:
+    \begin{equation}
+        \lim_{n\rightarrow\infty}\lambda_{n}=-\infty
+    \end{equation}
+    以及$\{e_{i}\}$构成一组完备正交基。
+\end{Thm}
+\begin{Thm}
+    $-\varDelta$算子的特征值必为正，且是单重的。且最小的特征值满足：
+    \begin{equation}
+        \lambda_{1}=\min_{u\in H_{0}^{1}(\Omega),u\neq 0}\frac{|\nabla u|^{2}}{\|u\|_{L^{2}(\Omega)}^{2}}
+    \end{equation}
+\end{Thm}
+\begin{Thm}
+    $\varDelta$算子是负定的。
+\end{Thm}
+正则化太复杂，没时间搞了。
 \end{document}
