@@ -246,4 +246,103 @@
 \begin{Thm}
     $\epsilon'(\Rn)$广义函数全体关于线性运算和卷积运算构成一个可交换的有单位元的代数，$\delta$为其单位元。
 \end{Thm}
+\begin{Definition}[$\mathscr{S}(\Rn)$上的Fourier变换]
+    对于函数$f\in\mathscr{S}(\mathbb{R}^{n})$,定义其Fourier变换为：
+    \begin{equation}
+        F[f]:=\int_{\mathbb{R}^{n}}f(x)e^{-ix\cdot\xi}\dif x.
+    \end{equation}
+    又若$g(\xi)\in\mathscr{S}(\mathbb{R}^{n})$,定义其Fourier逆变换为：
+    \begin{equation}
+        F^{-1}(g)=\frac{1}{(2\pi)^{n}}\int_{\mathbb{R}^{n}}g(\xi)e^{i\xi\cdot x}\dif\xi.
+    \end{equation}
+\end{Definition}
+\begin{Thm}
+    \begin{equation}
+        F^{-1}(F[f])=f.
+    \end{equation}
+\end{Thm}
+\begin{Example}
+    \begin{equation}
+        F[\frac{1}{a^2+x^2}]=\frac{\pi}{a}e^{-a|\xi|}
+    \end{equation}
+\end{Example}
+\begin{Thm}[Fourier变换的基本性质]
+    $\newline$
+    \begin{itemize}
+        \item 线性：
+        \begin{equation}
+            F[\alpha_{1}f_{1}+\alpha_{2}f_{2}]=\alpha_{1}F[f_{1}]+\alpha_{2}F[f_{2}].
+        \end{equation}
+        \item 求导：
+        \begin{equation}
+            F[\partial_{j}f]=i\xi_{j}F[f].
+        \end{equation}
+        \item 乘多项式
+        \begin{equation}
+            F[x_{j}f]=i\partial_{j}F[f].
+        \end{equation}
+        \item 卷积
+        \begin{equation}
+            \begin{aligned}
+            F[f*g]&=F[f].F[g]\\
+            F[f.g]&=(2\pi)^{-n}F[f]*F[g]\\
+            \end{aligned}
+        \end{equation}
+    \end{itemize}
+\end{Thm}
+\begin{Thm}[Parseval]
+    \begin{equation}
+        \int_{\Rn}f\cdot\bar{g}\dif x=(2\pi)^{-n}\int_{\Rn}F[f]\overline{F[g]}\dif x.
+    \end{equation}
+\end{Thm}
+\begin{Definition}[$\mathscr{S}'(\Rn)$上的Fourier变换]
+    对于任意$\mathscr{S}'(\Rn)$广义函数$T$,定义其Fourier变换$F[T]$为：
+    \begin{equation}
+        \innerprod{F[T]}{\varphi}=\innerprod{T}{F[\varphi]}.
+    \end{equation}
+    逆Fourier变换同样定义。
+\end{Definition}
+广义函数Fourier变换的性质大多和常义函数相同，但卷积性质略有区别，因为广义函数的卷积不一定可以定义。
+\begin{Thm}
+    若$\varphi\in\mathscr{\Rn}$,$T\in\mathscr{S}'(\Rn)$,则$\varphi*T\in\mathscr{S}'(\Rn)$且
+    \begin{equation}
+        F[\varphi*T]=F[\varphi]F[T].
+    \end{equation}
+\end{Thm}
+\begin{Thm}
+    对于$S\in\mathscr{S}'(\Rn),T\in\epsilon'(\Rn)$,有：
+    \begin{equation}
+        F[T*S]=F[T].F[S]
+    \end{equation}
+\end{Thm}
+\begin{Example}
+    \begin{equation}
+        F[\delta(x)]=1.
+    \end{equation}
+\end{Example}
+\begin{Example}
+    \begin{equation}
+        F[1]=(2\pi)^{n}\delta.
+    \end{equation}
+\end{Example}
+\begin{Example}
+    \begin{equation}
+        F[\sin ax]=-i\pi(\delta(\xi-a)-\delta(\xi+a)).
+    \end{equation}
+\end{Example}
+设在空间$\Rn$中给定线性微分算子
+\begin{equation}
+    p(x,D)=\sum_{|\alpha|\le M}a_{\alpha}(x)D^{\alpha},D=\frac{1}{i}\partial.
+\end{equation}
+则由Fourier变换的性质：
+\begin{equation}
+    p(x,D)u=\frac{1}{(2\pi)^{n}}\int e^{i\innerprod{x}{\xi}}p(x,\xi)\hat{u}(\xi)\dif\xi.
+\end{equation}
+\begin{Definition}[微分算子的推广]
+    如果$a(x,\xi)\in S^{m}$,可以定义$\mathscr{S}(\Rn)$上的线性连续映射为：
+    \begin{equation}
+        Au(x)=\frac{1}{(2\pi)^{n}}\int e^{i\innerprod{x}{\xi}}a(x,\xi)\hat{u}(\xi)\dif\xi
+    \end{equation}
+    $a(x,\xi)$称为$A$的\textbf{象征}。
+\end{Definition}
 \end{document}
